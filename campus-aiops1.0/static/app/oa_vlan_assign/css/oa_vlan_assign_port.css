@@ -1,0 +1,53 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 1060;
+}
+#show_filed {
+    float: left;
+    margin-right: 4px;
+}
+#oa_vlan_assign_port #datas .colorTip{
+    margin-top: 8px;
+    height: auto;
+    position: absolute;
+    font-size: 10px;
+    top: 45px;
+    left: 38px;
+}
+#oa_vlan_assign_port #datas .colorTip p{
+  display: inline-block;
+  margin:0;
+}
+#oa_vlan_assign_port #datas .colorTip i{
+  display: inline-block;
+  margin-right:5px;
+  width:10px;
+  height:10Px;
+  background: black;
+}
+#oa_vlan_assign_port #datas .modal-body li{
+  display:flex;
+  display:-webkit-flex;
+  padding:5px 15px;
+}
+#oa_vlan_assign_port #datas .modal-body li span{
+  border-radius: 3px;
+  padding:10px 2px;
+  display: block;
+  height:100%;
+  width:50%;
+  height:100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

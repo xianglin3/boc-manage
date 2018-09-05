@@ -1,0 +1,363 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}白名单信息维护{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block headcontent %}
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/datatables/media/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/ip.css"/>
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/index.css"/>
+    <style>
+        #interfaceConfigModal pre {
+            height: 300px;
+            font-family: monospace;
+            font-size: 16px;
+            background-color: black;
+            color: white;
+        }
+        tbody pre{
+            border:none;
+            font-size: 14px;
+            margin:0;
+            padding:0;
+            color:#333;
+        }
+        #configText{
+            height:200px;
+            border:1px solid #333;
+            border-radius:4px;
+            overflow-y:auto;
+        }
+
+    </style>
+{% endblock %}
+{% block pagecontent %}
+    {% include "campus_aiops/navBase.html"%}
+    {% verbatim myblock %}
+    <div class="ip-list" id="ip">
+        <div class="row">
+            <div class="col-lg-12">
+                <button type="button" @click = "addIp" class="btn btn-primary btn-sm">IP分配</button>
+                <form enctype="multipart/form-data" id="import_ip_excel" class="file btn btn-primary btn-sm">批量导入IP分配信息
+                    <input @change="importIp" type="file" name="excel" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
+                </form>
+                <button @click = 'conCheck()' type="button" class="btn btn-primary btn-sm">一致性检查</button>
+                <div style="float:right; padding-right:20px;">
+                    <i v-show="advIcon" @click="hideSearch" :class="advSearch ? 'glyphicon glyphicon-minus':'glyphicon glyphicon-plus' " style="color:#20a0ff;margin-right:-10px;padding:2px;font-size:12px;border:1px solid #ccc;cursor:pointer;"></i>
+                    <el-button v-show="!advTab" type="text" @click="searchTab">高级查询</el-button>
+                    <el-button v-show="advTab" type="text" @click="resetSearch">普通查询</el-button>
+                </div>
+            </div>
+            <!-- 高级查询区域 -->
+            <div class="col-lg-12" v-show="advSearch" style="padding-top:10px;position:relative;">
+                <div style="width:450px;float:left">
+                    <span style="float:left;display:inline-block;padding-right:10px;">IP/MAC地址批量查询:</span>
+                    <el-popover
+                        style="display:inline-block;width:256px;"
+                        placement="top"
+                        title="提示"
+                        width="256"
+                        trigger="focus"
+                        content="mac地址只支持三种格式的输入：6c0b.8445.0941，6c:0b:84:45:09:41和6c-0b-84-45-09-41">
+                        <el-input
+                            slot="reference"
+                            type="textarea"
+                            :autosize="{ minRows: 3}"
+                            placeholder="输入IP或者MAC地址一种,回车键换行"
+                            v-model="textareaSearch">
+                        </el-input>
+                    </el-popover>
+                </div>
+                <div style="width:280px;float:left;position:relative">
+                    <span style="display:inline-block;padding-right:10px;">IP状态查询:</span>
+                    <el-select v-model="selected" placeholder="请选择">
+                        <el-option label="全部列表" value="2"></el-option>
+                        <el-option label="在用列表" value="0"></el-option>
+                        <el-option label="已回收列表" value="1"></el-option>
+                    </el-select>
+                    <button style="position:absolute;left:287px;" type="button" class="btn btn-info btn-small" @click="searchIp()">查询</button>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row" style="padding-bottom:5px;">
+            <div class="col-lg-12">
+                <button type="button" @click='deleteBtn' class="btn btn-primary btn-xs">批量回收</button>
+                <button type="button" class="btn btn-info btn-xs" @click="downloadExcel()">批量下载</button>
+                <!-- <a href="" download="IP信息表.xlsx" id="hf"></a> -->
+                <div class="dropdown show-filed">
+                    <button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">显示字段<span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li data-stopPropagation="true" v-for = "(value,key) in showField">
+                            <label style="width:100%;"><input style="margin-right:6px;" type="checkbox" :value="value">{{key}}</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- ip_list table -->
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="table_id_example" class="table table-striped table-bordered table-hover" width="100%">
+                    <thead>
+                        <tr style="background: #337ab7; color:#fff;">
+                            <th class="text-center">
+                                <input type="checkbox" class="checkall" />
+                            </th>
+                            <th class="text-center" v-for = 'ele in tableField'>{{ele.text}}</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                    </thead>
+               </table>
+            </div>
+        </div>
+        <hr>
+        <div class="preloader" v-show="loading"><i class="fa fa-spinner fa-spin fa-5x"></i></div>
+        <!-- ip分配对话框 -->
+        <el-dialog class="ipAddDialog" title="IP分配" :visible.sync="AssignIpVisible">
+            <el-form :model="ruleForm"  :rules="rules" ref="ruleForm" label-width="120px">
+                <el-row :gutter="10" style="margin-top:-6px;">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="8">
+                        <el-form-item label="用户部门" prop="user_department">
+                            <el-input v-model="ruleForm.user_department"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="8">
+                        <el-form-item label="使用人" prop="user">
+                            <el-input v-model="ruleForm.user"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="8">
+                        <el-form-item label="域账号" prop="account">
+                            <el-input v-model="ruleForm.account"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="8">
+                        <el-form-item label="人员类别" prop="head_office">
+                            <el-select v-model="ruleForm.head_office" placeholder="请选择人员类别">
+                                <el-option v-for="ele in limitField.headOffice" :label="ele.name" :key="ele.name" :value="ele.name"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="8">
+                        <el-form-item label="联系电话" prop="tel">
+                            <el-input v-model="ruleForm.tel"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="8">
+                        <el-form-item label="工位号" prop="location">
+                            <el-input v-model="ruleForm.location"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="8">
+                        <el-form-item label="信息点号" prop="info_id">
+                            <el-input v-model="ruleForm.info_id"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="8">
+                        <el-form-item label="现有IP地址" prop="ip">
+                            <el-input type="textarea" :rows="1" v-model="ruleForm.ip" placeholder="多个IP地址回车键换行"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="8">
+                        <el-form-item label="MAC地址" prop="mac">
+                            <el-input type="textarea" :rows="1" v-model="ruleForm.mac" placeholder="格式:xxxx.xxxx.xxxx,多个MAC地址回车键换行"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="8">
+                        <el-form-item label="交换机IP" prop="switch_ip">
+                            <el-input v-model="ruleForm.switch_ip"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="8">
+                        <el-form-item label="接口" prop="switch_int">
+                            <el-input v-model="ruleForm.switch_int"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="8">
+                        <el-form-item label="终端类型" prop="terminal_type">
+                            <el-select v-model="ruleForm.terminal_type" placeholder="请选择终端类型">
+                                <el-option v-for="ele in limitField.terminalType" :label="ele.name" :key="ele.name" :value="ele.name"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="8">
+                        <el-form-item label="未准入原因(白名单类别)" prop="reason">
+                            <el-select v-model="ruleForm.reason" placeholder="请选择未准入原因">
+                                <el-option v-for="ele in limitField.reason" :label="ele.name" :key="ele.name" :value="ele.name"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="8">
+                        <el-form-item label="备注" prop="note">
+                            <el-input type="textarea" :rows="2" v-model="ruleForm.note"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+            </el-form>
+            <div class="row text-center" style="padding-top:20px;">
+                <el-form>
+                    <el-form-item style="margin-bottom:0px;">
+                      <el-button type="success" @click="submitForm('ruleForm')">提交</el-button>
+                      <el-button type="primary" @click="resetForm('ruleForm')">重置</el-button>
+                      <el-button type="warning" @click="cancelDialog('ruleForm')">取消</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+        </el-dialog>
+        <!-- 详情页对话框 -->
+        <el-dialog class="ipSee" title="详细信息" :visible.sync="ipSeeVisible">
+            <div class="modal-body">
+                <div class="btnTab">
+                    <span :class="infoSwitch ? 'active':'' " @click="infoSwitch = true">人工录入信息<i style="top:28px;left:46px;"></i></span>
+                    <span :class="infoSwitch ? '':'active' " @click="infoSwitch = false">自动采集信息<i style="top:28px;left:165px;"></i></span>
+                </div>
+                <ul v-show="infoSwitch" class="list-group row" style="margin-bottom: 20px;background-color: #fff; ">
+                    <li class=" col-sm-6 col-md-4 col-lg-3">
+                      <span style="width:40%">状态</span>
+                      <span style="width:60%" v-text="ipStatus == '0'? '：在用':'：已回收' "></span>
+                    </li>
+                  <li v-if="ele['sort'] == 'man'" class=" col-sm-6 col-md-4 col-lg-3" v-for = '(ele,index) in seeField' style="border-radius:none;">
+                      <span :title='ele.text' style="width:40%">{{ ele.text }}</span>：
+                      <span :title='seeData[ele.field]' style="width:60%">{{seeData[ele.field] || '空'}}</span>
+                  </li>
+                </ul>
+                <ul v-show="!infoSwitch" class="list-group row" style="background-color:#fff ">
+                  <li v-if="ele['sort'] == 'auto'" class="col-sm-6 col-md-4 col-lg-3" v-for = '(ele,index) in seeField' style="border-radius:none;">
+                      <span :title='ele.text' style="width:40%;">{{ ele.text }}</span>：
+                      <span :title='seeData[ele.field]' style="width:60%;">{{seeData[ele.field] || "空"}}</span>
+                  </li>
+                </ul>
+            </div>
+        </el-dialog>
+        <!-- 一致性检查对话框 -->
+        <el-dialog class="checkDialog" title="一致性检查" :visible.sync="checkVisible">
+            <!-- <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
+                <el-menu-item index="0">交换机信息检查</el-menu-item>
+            </el-menu> -->
+            <span style="padding:11px 20px;display:inline-block;" v-text="checkDesc"></span>
+            <button @click="downloadCheck" type="button" class="btn btn-info" style="margin:0 0 10px 200px;">
+                下载
+                <i class="glyphicon glyphicon-download-alt" style="color:#fff;" title="导出"></i>
+            </button>
+
+            <div style="width:100%;" id="table">
+            <el-table
+                :data="tableList"
+                stripe>
+                <el-table-column
+                    prop="manual_ip"
+                    label="人工录入IP">
+                    <template scope="scope">
+                        <pre style="margin:0;padding:0;font-size: 14px; background-color: transparent;">{{ scope.row.manual_ip }}</pre>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    prop="manual_mac"
+                    label="人工录入MAC">
+                    <template scope="scope">
+                        <pre style="margin:0;padding:0;font-size: 14px; background-color: transparent;">{{ scope.row.manual_mac }}</pre>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    prop="manual_switch"
+                    label="人工录入交换机IP">
+                    <template scope="scope">
+                        <a :href="'http://22.1.111.29/device_switch/device_panel/?device_id='+scope.row.manual_device_id" target="_blank">{{ scope.row.manual_switch }}</a>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    prop="manual_int"
+                    label="人工录入端口">
+                </el-table-column>
+                <el-table-column
+                    prop="auto_ip"
+                    label="自动采集IP">
+                    <template scope="scope">
+                        <pre style="margin:0;padding:0;font-size: 14px; background-color: transparent;">{{ scope.row.auto_ip }}</pre>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    prop="auto_mac"
+                    label="自动采集MAC">
+                    <template scope="scope">
+                        <pre style="margin:0;padding:0;font-size: 14px; background-color: transparent;">{{ scope.row.auto_mac }}</pre>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    prop="auto_switch"
+                    label="自动采集交换机IP">
+                    <template scope="scope">
+                        <a :href="'http://22.1.111.29/device_switch/device_panel/?device_id='+scope.row.auto_device_id" target="_blank">{{ scope.row.auto_switch }}</a>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    prop="auto_int"
+                    label="自动采集端口">
+                </el-table-column>
+            </el-table>
+            </div>
+            <div style="text-align:center;padding-top:20px;">
+                <el-pagination
+                  @size-change="handleSizeChange"
+                  @current-change="handleCurrentChange"
+                  :current-page="pagination.current_page"
+                  :page-sizes="pagination.page_sizes"
+                  :page-size="pagination.page_size"
+                  :layout="pagination.layout"
+                  :total="pagination.total">
+                </el-pagination>
+            </div>
+        </el-dialog>
+        <!-- 下发配置对话框 -->
+        <div class="modal fade" id="interfaceConfigModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="pushPortFullName" value="hi">端口配置下发</h4>
+                    </div>
+                    <div class="modal-body">
+                        <b>show run配置：</b>
+                        <div id="showRun"></div>
+                        <div id="portmac"></div>
+                        <div class="form-group">
+                            <label>选择配置类型</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="typeoption" id="inode"
+                                       value="inode">iNode认证端口配置
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="typeoption" id="mac"
+                                       value="mac">MAC认证端口配置
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="typeoption" id="other"
+                                       value="other">普通终端接入配置
+                            </label>
+                        </div>
+                        <b>待下发配置：</b>
+                        <div id="config"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" id="pushBut" class="btn btn-primary">下发配置</button>
+                    </div>
+                    <div style="display:none"><input id="push_ip" value="21.3.32.201"/>
+                    </div>
+                    <div id='show_loader' class="preloader hidden"><i class="fa fa-spinner fa-spin fa-5x"></i></div>
+                    <!-- /.modal-content -->
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endverbatim myblock %}
+{% endblock %}
+{% block bodycontent %}
+    <script src="/static/jquery_datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/datatables/media/js/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/jquery.form.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/navBase.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/ip.js"></script>
+{% endblock %}

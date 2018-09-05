@@ -1,0 +1,9 @@
+[
+  { "data": "parent_display","CH":"一级网络地址空间"},
+  { "data": "network_address","CH":"网络号"},
+  { "data": "network_mask","CH":"掩码"},
+  { "data": "organization","CH":"机构名"},
+  { "data": "org_type","CH":"机构类型"},
+  { "data": "manage_group","CH":"管理人"},
+  { "data": "opt","CH":"操作"}
+]

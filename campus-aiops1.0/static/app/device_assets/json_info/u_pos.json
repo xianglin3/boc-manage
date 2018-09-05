@@ -1,0 +1,14 @@
+{
+  "filed":{
+    "groupName":["分组",true],
+    "id":["id",false],
+    "name":["名称",true],
+    "status":["状态",true],
+    "cabinet":["所在机柜",true]
+  },
+  "url":"/device_assets/positionu_list_data/",
+  "type":"contract",
+  "group":[
+    {"href":"cabinet","html":"所在机柜"}
+  ]
+}

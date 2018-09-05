@@ -1,0 +1,132 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}网络通讯-首页{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block headcontent %}
+	<link rel="stylesheet" href="/static/index_new/css/index.css" />
+{% endblock %}
+{% block pagecontent %}
+{% verbatim myblock %}
+	<div id="homePage">
+		<el-row :gutter="20">
+		  <el-col :span="12">
+			  <el-card class="box-card">
+				  <div slot="header" class="clearfix">
+					<span>设备警告TOP10</span>
+				  </div>
+				  <div style="height:300px;">
+					<el-table
+						:data="tableData"
+						border
+						style="width: 100%">
+						<el-table-column
+						  prop="dev_name"
+						  label="设备名称">
+						</el-table-column>
+						<el-table-column
+						  prop="area"
+						  label="功能区">
+						</el-table-column>
+						<el-table-column
+						  prop="node"
+						  label="node">
+						</el-table-column>
+						<el-table-column
+						  prop="num"
+						  label="数量">
+						</el-table-column>
+						<el-table-column
+						  label="操作">
+						  <template scope="scope">
+							  <button @click="handleClick(scope.row)" type="button" class="btn btn-info">查看</button>
+							<!--<el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>-->
+						  </template>
+						</el-table-column>
+					  </el-table>
+				  </div>
+			  </el-card>
+		  </el-col>
+		  <el-col :span="12">
+			  <el-card class="box-card">
+				  <div slot="header" class="clearfix">
+					<span>功能区</span>
+				  </div>
+				  <div style="height:300px;">
+					<el-table
+						:data="tableData2"
+						border
+						style="width: 100%">
+						<el-table-column
+						  prop="area"
+						  label="名称">
+						</el-table-column>
+						<el-table-column
+						  prop="num"
+						  label="数量">
+						</el-table-column>
+						<el-table-column
+						  label="操作">
+						  <template scope="scope">
+							  <button @click="handleClick2(scope.row)" type="button" class="btn btn-info">查看</button>
+							<!--<el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>-->
+						  </template>
+						</el-table-column>
+					</el-table>
+				  </div>
+				  <el-dialog title="设备警告详情" :visible.sync="dialogDeviceVisible">
+					<el-table
+						:data="tableData"
+						border
+						style="width: 100%">
+						<el-table-column
+						  prop="date"
+						  label="日期">
+						</el-table-column>
+						<el-table-column
+						  prop="name"
+						  label="姓名">
+						</el-table-column>
+						<el-table-column
+						  prop="province"
+						  label="省份">
+						</el-table-column>
+						<el-table-column
+						  label="操作">
+						  <template scope="scope">
+							  <button @click="handleClick(scope.row)" type="button" class="btn btn-info">查看</button>
+							<!--<el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>-->
+						  </template>
+						</el-table-column>
+					</el-table>
+				  </el-dialog>
+			  </el-card>
+		  </el-col>
+		</el-row>
+		<el-row :gutter="20" style="margin-top:20px;display:flex;">
+		  <el-col :span="12">
+			  <el-card class="box-card">
+				  <div slot="header" class="clearfix">
+					<span>资源消耗</span>
+				  </div>
+				  <div style="height:auto;" class="pie">
+					  <div v-for="item in pieData" class="echarts"></div>
+				  </div>
+			  </el-card>
+		  </el-col>
+		  <el-col :span="12">
+			  <el-card class="box-card">
+				  <div slot="header" class="clearfix">
+					<span>资源消耗</span>
+				  </div>
+				  <div style="height:300px;">
+				  </div>
+			  </el-card>
+		  </el-col>
+		</el-row>
+	</div>
+{% endverbatim myblock %}
+{% endblock %}
+{% block bodycontent %}
+	<!--<script type="text/javascript" charset="utf-8" src="/static/index_new/js/collapse.js"></script>-->
+	<script type="text/javascript" charset="utf-8" src="/static/index_new/js/echarts.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/static/index_new/js/index.js"></script>
+{% endblock %}

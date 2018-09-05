@@ -1,0 +1,13 @@
+{
+  "filed":{
+    "groupName":["分组",true],
+    "id":["id",false],
+    "name":["名称",true],
+    "number":["合同编号",true]
+  },
+  "url":"/device_assets/contractpurchase_list_data/",
+  "type":"contract",
+  "group":[
+    {"href":"name","html":"名称"}
+  ]
+}

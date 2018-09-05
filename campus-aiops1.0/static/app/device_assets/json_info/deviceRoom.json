@@ -1,0 +1,14 @@
+{
+  "filed":{
+    "groupName":["分组",true],
+    "id":["id",false],
+    "type":["父类",true],
+    "name":["机房名-可视化",true],
+    "is_parent":["是否父类",true]
+  },
+  "url":"/device_assets/room_list_data/",
+  "type":"deviceRoom",
+  "group":[
+    {"href":"name","html":"名称"}
+  ]
+}

@@ -1,0 +1,7 @@
+[
+  {"field":"factory","CH":"厂商"},
+  {"field":"device_type","CH":"设备类型"},
+  {"field":"reg_pos","CH":"地域"},
+  {"field":"bus_type","CH":"运维组"},
+  {"field":"device_model","CH":"型号"}
+]

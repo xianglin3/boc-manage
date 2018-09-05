@@ -1,0 +1,67 @@
+/*nav style*/
+section.content div.box div.box-header {
+  display: none;
+}
+[v-block]{
+    display:none;
+}
+.content-wrapper, .right-side{
+    background-color:#fff;
+}
+.box{
+    border:none;
+    box-shadow:none;
+}
+.boxShow {
+    line-height:20px;
+    max-height: 80px;
+    overflow: hidden;
+    position:relative;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    word-wrap:break-word;
+    word-break:break-all;
+}
+.boxShow i{
+    line-height:20px;
+    font-size:12px;
+    font-style:normal;
+    background:#eee;
+    font-weight:700;
+    margin:0 5px;
+}
+.boxShow span{
+    font-size:12px;
+    line-height:20px;
+}
+.boxShow:after{
+  /*position:absolute;
+  content:'';
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  box-shadow:0 -10px 0 rgba(255,255,255,.5) inset;*/
+}
+td{
+    padding-top:8px;
+}
+.tdDate{
+    vertical-align:top;
+}
+.tdDate i{
+    cursor:pointer;
+}
+.activeShow .boxShow{
+   max-height: none;
+   height: auto;
+    -webkit-line-clamp: 100;
+}
+.sortClass{
+    cursor:pointer;
+}
+.sortClass i{
+    color:#ccc;
+}

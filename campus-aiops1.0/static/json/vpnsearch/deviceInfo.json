@@ -1,0 +1,10 @@
+[
+  {
+    "device_name":"B-HHA02-EXT-VPN03",
+    "device_ip":"21.120.15.212"
+  },
+  {
+    "device_name":"B-HHA02-EXT-VPN04",
+    "device_ip":"21.120.15.213"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "filed":{
+    "groupName":["分组",true],
+    "id":["id",false],
+    "desc":["描述",true],
+    "dst_ip":["目的IP地址",true],
+    "dst_netmask":["目的IP地址掩码",true],
+    "interface":["关联的路由接口",true],
+    "metric":["度量值",true],
+    "next_hop":["下一跳",true],
+    "os":["关联的操作系统",true],
+    "src_ip":["源IP地址",true],
+    "src_netmask":["源IP地址掩码",true]
+  },
+  "url":"/device_assets/route_list_data/",
+  "type":"contract",
+  "group":[
+    {"href":"next_hop","html":"下一跳"},
+    {"href":"os","html":"关联的操作系统"}
+  ]
+}

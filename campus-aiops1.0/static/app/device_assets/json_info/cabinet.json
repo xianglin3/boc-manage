@@ -1,0 +1,18 @@
+{
+  "filed":{
+    "groupName":["分组",true],
+    "id":["id",false],
+    "name":["机柜-可视化",true],
+    "area":["地区",true],
+    "room":["所属机房",true],
+    "counts_u":["U位总数",true],
+    "building":["所在楼宇",true]
+  },
+  "url":"/device_assets/cabinet_list_data/",
+  "type":"cabinet",
+  "group":[
+    {"href":"area","html":"地区"},
+    {"href":"room","html":"所属机房"},
+    {"href":"building","html":"所在楼宇"}
+  ]
+}

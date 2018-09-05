@@ -1,0 +1,57 @@
+/*fxl*/
+[v-cloak]{
+    display:none;
+}
+.box {
+    border-top:none;
+    position: relative;
+    border-radius: none;
+    background: none;
+    margin-bottom: none;
+    width: 100%;
+    box-shadow:none;
+}
+.box-body{
+    overflow:auto;
+}
+.box-header.with-border{
+    display:none;
+}
+.main-footer{
+    display:none;
+}
+#homePage{
+    width:1631px;
+}
+#homePage .pie:after{
+    display:block;
+    content:'';
+    clear:both;
+}
+#homePage .echarts{
+    float:left;
+    height:270px;
+    width:33.33%;
+    padding:5px 0;
+}
+#homePage .el-table td{
+    padding:0;
+    cursor:pointer;
+}
+#homePage .navEcharts{
+    height:200px;
+}
+#homePage .gaugeEcharts{
+    height:200px;
+}
+#homePage .viewEcharts .el-card__body{
+    padding:0;
+}
+#homePage .operator{
+    height:180px;
+}
+.shadow{
+    padding:10px;
+    background:#fff;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+}

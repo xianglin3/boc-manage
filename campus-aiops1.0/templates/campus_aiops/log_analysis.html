@@ -1,0 +1,53 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}日志分析{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block headcontent %}
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/log_analysis.css"/>
+<style>
+
+</style>
+{% endblock %}
+{% block pagecontent %}
+    {% verbatim myblock %}
+    <div class="logAnalysis" id="logAnalysis" v-block>
+        <el-row :gutter="30" style="padding-bottom:20px;margin-left:20px;">
+            <el-col :span="12">
+                <el-input v-model="searchVal" @keyup.enter.native="search" placeholder="请输入查询内容"></el-input>
+            </el-col>
+            <el-col :span="4">
+                <el-button @click="search" type="primary">查询</el-button>
+            </el-col>
+        </el-row>
+        <div id="echart" style="height:200px;"></div>
+        <div>
+            <table style="width:100%;">
+                <tr style="border-bottom:1px solid #ccc;">
+                    <th style="width:30%;padding-bottom:15px;">
+                        <label class="sortClass" @click="sortData">Time<i  :class="sort == 'order'?'el-icon-caret-bottom':'el-icon-caret-top' "></i></label>
+                    </th>
+                    <th>_source</th>
+                </tr>
+                <tr v-for="(item,index) in showTable" style="border-bottom:1px solid #ccc;">
+                    <td class="tdDate" style="vertical-align:top;">
+                        <i @click="showAll" class="el-icon-caret-right"></i>
+                        <span>({{index}}){{item.date}}</span>
+                    </td>
+                    <td style="padding-bottom:4px;">
+                        <div class="boxShow" v-html="getSource(item.source)"></div>
+                    </td>
+                </tr>
+                <tr style="text-align:center;">
+                    <td colspan="2" v-show="tableLoading">
+                        <span>加载中 </span>
+                        <i style="color:#3c8dbc;font-size:20px;" :class="tableLoading?'el-icon-loading':''"></i>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    {% endverbatim myblock %}
+{% endblock %}
+{% block bodycontent %}
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/echarts.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/log_analysis.js"></script>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "infocollection/prettyBase.html" %}
+{% block title %}信息采集平台{% endblock %}
+{% block headjs %}
+    <style>
+pre {
+    font-family: monospace;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+}
+</style>
+    <script  type="application/javascript" src="/static/js/jquery.js"></script>
+    <script  type="application/javascript" src="/static/js/gateone.js"></script>
+    <script type="text/javascript">
+
+  $(document).ready(function () {
+        $('#infocollection').click(function(){
+                var device_ip = $('#device_ip').val();
+                var command = $('#command').val();
+                var user = $('#user').val();
+                var password = $('#password').val();
+                $.ajax({
+                      type:'POST',
+                      url:'/infocollection/ssh_get_info/',
+                      data:{"device_ip":device_ip,"command":command,"user":user,"password":password},
+                      success:function(data){
+                          var infocollection=data['infocollection'];
+                          var $infocollectionresult = $('#infocollectionresult').empty();
+                          $infocollectionresult.html('<pre>'+infocollection+'</pre>')
+
+                      },
+                      error: function (jqXHR, textStatus, errorThrown) {
+                          alert('err');
+                        console.log("error");
+                          },
+                      dataType: 'json'
+                });
+             });
+    } );
+      </script>
+{% endblock %}
+{% block content %}
+
+    <div class="widget-box">
+        <form action="/infocollection/ssh_get_info/" method="post" enctype="multipart/form-data">
+            设备IP:<input id="device_ip" name="device_ip" type="text" /><br>
+            命&nbsp;&nbsp;令:<input id="command" name="command" type="text" /><br>
+            用户名:<input id="user" name="user" type="text" /><br>
+            密&nbsp;&nbsp;码:<input id="password" name="password" type="password" /><br>
+            <input id="infocollection" type="button"  class="btn-success" value="采集"/>
+        </form>
+    </div>
+    #ssh webterminal
+    <div style="width: 60em; height: 30em;">
+        <div id="gateone"></div>
+    </div>
+    <script>
+    window.onload = function(){
+        alert('okkk');
+        GateOne.init({goURL: "https://22.1.111.29:88/"});
+    }</script>
+    <div id='infocollectionresult'class="widget-box">
+
+    </div>
+
+
+
+{% endblock %}
+{% block bodyjs %}
+
+{% endblock %}

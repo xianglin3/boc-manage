@@ -1,0 +1,20 @@
+{
+  "filed":{
+    "groupName":["分组",true],
+    "id":["id",false],
+    "name":["名称",true],
+    "business_system":["关联业务应用表",true],
+    "desc":["描述",true],
+    "memory":["内存",true],
+    "region":["所属逻辑功能区",true],
+    "device":["关联硬件设备",true],
+    "software":["关联软件",true],
+    "routes":["包含的路由",true]
+  },
+  "url":"/device_assets/osinstance_list_data/",
+  "type":"contract",
+  "group":[
+    {"href":"region","html":"逻辑功能区"},
+    {"href":"software","html":"关联软件"}
+  ]
+}

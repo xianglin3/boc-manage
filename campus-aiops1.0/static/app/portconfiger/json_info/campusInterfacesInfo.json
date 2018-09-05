@@ -1,0 +1,14 @@
+[
+  { "data": "ip","CH":"设备IP"},
+  { "data": "dev_name","CH":"设备"},
+  { "data": "name","CH":"端口"},
+  { "data": "mode","CH":"mode"},
+  { "data": "status","CH":"状态"},
+  { "data": "status_reason","CH":"状态原因"},
+  { "data": "mac","CH":"mac"},
+  { "data": "mac_history","CH":"历史mac"},
+  { "data": "interface_ip","CH":"arp"},
+  { "data": "interface_ip_history","CH":"历史arp"},
+  { "data": "log_status","CH":"历史状态"},
+  { "data": "opt","CH":"操作"}
+]

@@ -1,0 +1,80 @@
+{
+  "order_pro":[
+    {"data":"name","CH":"工单名","class":"required"},
+    {"data":"applicant","CH":"申请人","class":""},
+    {"data":"note","CH":"备注","class":""},
+    {"data":"create_time","CH":"申请时间","class":""},
+    {"data":"remedy_number","CH":"remedy工单号","class":""},
+    {"data":"push_time","CH":"下发时间","class":"date_time required"}
+  ],
+  "readonly": [
+    {
+      "name": true,
+      "applicant": true,
+      "note": true,
+      "create_time": true,
+      "remedy_number":true,
+      "description": true,
+      "server": true,
+      "partition": true,
+      "partition_for_zone":true,
+      "wwn": true,
+      "storage_sn": true,
+      "storage_sn_for_zone": true,
+      "storage_port": true,
+      "storage_port_for_zone": true,
+      "backup_area": true,
+      "hidden_able": true
+    },
+    {
+      "name": false,
+      "applicant": true,
+      "note": false,
+      "create_time": true,
+      "remedy_number":false,
+      "description": false,
+      "server": false,
+      "partition": false,
+      "partition_for_zone": false,
+      "wwn": false,
+      "storage_sn": false,
+      "storage_sn_for_zone": true,
+      "storage_port": false,
+      "storage_port_for_zone": true,
+      "backup_area": false,
+      "hidden_able": false
+    },
+    {
+      "name": true,
+      "applicant": true,
+      "note": true,
+      "create_time": true,
+      "remedy_number":true,
+      "description": true,
+      "server": true,
+      "partition": true,
+      "partition_for_zone": false,
+      "wwn": true,
+      "storage_sn": true,
+      "storage_sn_for_zone": false,
+      "storage_port": true,
+      "storage_port_for_zone": false,
+      "backup_area": true,
+      "hidden_able": true
+    }
+  ],
+  "buttons":[
+    {"class":"btn_cancel","html":"取消"},
+    {"class":"btn_back btn-danger","html":"退回"},
+    {"class":"btn_close","html":"关闭"},
+    {"class":"btn_save","html":"保存"},
+    {"class":"btn_submit btn-danger","html":"提交"},
+    {"class":"btn_recovery btn-danger","html":"追回"},
+    {"class":"btn_checkPort","html":"检验存储端口"},
+    {"class":"btn_createScript","html":"生成脚本"},
+    {"class":"btn_viewScript","html":"查看脚本"},
+    {"class":"btn_createScript","html":"重新生成脚本"},
+    {"class":"btn_pushScript btn-danger","html":"审核通过并推送"},
+    {"class":"check_sys_wwn_port","html":"检查系统WWN"}
+  ]
+}

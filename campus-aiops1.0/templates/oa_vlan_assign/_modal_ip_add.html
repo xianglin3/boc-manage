@@ -1,0 +1,103 @@
+<div class="modal fade bs-example-modal-lg" id="ipAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document" style="width:58%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">IP分配</h3>
+            </div>
+            <div class="modal-body">
+              <el-form :model="ruleForm" :inline="true" :rules="rules" ref="ruleForm" label-width="110px" class="demo-ruleForm" size="medium ">
+                <div class="panel panel-warning" style="background-color: #F5FFFA;">
+                    <el-form-item label="部门名" prop="department_name">
+                        <el-select v-model="ruleForm.department_name" placeholder="请选择部门">
+                            <el-option v-for="ele in department" :label="ele.department_name" :key="ele.department_name" :value="ele.department_name"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="使用人" prop="user">
+                        <el-input v-model="ruleForm.user"></el-input>
+                    </el-form-item>
+                    <el-form-item label="域账号" prop="account" >
+                        <el-input v-model="ruleForm.account"></el-input>
+                    </el-form-item>
+                    <el-form-item label="人员类别" prop="head_office">
+                        <el-select v-model="ruleForm.head_office" placeholder="请选择人员类别">
+                            <el-option v-for="ele in limitFields.headOffice" :label="ele.name" :key="ele.name" :value="ele.name"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="联系电话" prop="tel">
+                        <el-input v-model="ruleForm.tel"></el-input>
+                    </el-form-item>
+                    <el-form-item label="工位号" prop="location">
+                        <el-input v-model="ruleForm.location"></el-input>
+                    </el-form-item>
+                    <el-form-item label="信息点号" prop="info_id">
+                        <el-input v-model="ruleForm.info_id"></el-input>
+                    </el-form-item>  
+                </div>
+                <div class="panel panel-warning" style="background-color: #FFFAFA;">
+                    <el-form-item label="现有IP地址" prop="ip">
+                        <el-input v-model="ruleForm.ip"></el-input>
+                    </el-form-item>
+                    <el-form-item label="MAC地址" prop="mac">
+                        <el-input v-model="ruleForm.mac" placeholder="格式:xxxx.xxxx.xxxx"></el-input>
+                    </el-form-item>
+                    <el-form-item label="交换机IP" prop="switch_ip">
+                        <el-input v-model="ruleForm.switch_ip"></el-input>
+                    </el-form-item>
+                    <el-form-item label="接口" prop="switch_int">
+                        <el-input v-model="ruleForm.switch_int"></el-input>
+                    </el-form-item>
+                    <el-form-item label="终端类型" prop="terminal_type">
+                        <el-select v-model="ruleForm.terminal_type" placeholder="请选择终端类型">
+                            <el-option v-for="ele in limitFields.terminalType" :label="ele.name" :key="ele.name" :value="ele.name" :title="ele.note"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="是否行内资产" prop="asset">
+                        <el-select v-model="ruleForm.asset">
+                          <el-option label="是" value="是"></el-option>
+                          <el-option label="否" value="否"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="未准入原因(白名单类别)" prop="reason">
+                        <el-select v-model="ruleForm.reason" placeholder="请选择未准入原因">
+                            <el-option v-for="ele in limitFields.reason" :label="ele.name" :key="ele.name" :value="ele.name" :title="ele.note"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="是否在白名单中" prop="exist">
+                        <el-select v-model="ruleForm.exist">
+                          <el-option label="是" value="是"></el-option>
+                          <el-option label="否" value="否"></el-option>
+                        </el-select>
+                    </el-form-item>
+                </div>
+                <div class="panel panel-warning" style="background-color: #FFFAF0;">
+                    <el-form-item label="访问后台系统名称" prop="application">
+                        <el-input v-model="ruleForm.application"></el-input>
+                    </el-form-item>
+                    <el-form-item label="后台系统IP" prop="app_ip">
+                        <el-input v-model="ruleForm.app_ip"></el-input>
+                    </el-form-item>
+                    <el-form-item label="访问后台端口" prop="app_interface">
+                        <el-input v-model="ruleForm.app_interface"></el-input>
+                    </el-form-item>
+                    <el-form-item label="备注" prop="note">
+                        <el-input type="textarea" :rows="1" v-model="ruleForm.note"></el-input>
+                    </el-form-item>
+                </div>
+            </el-form>
+        </div>    
+        <div class="modal-footer">
+            <div class="row text-center">
+              <el-form>
+                <el-form-item>
+                  <el-button type="success" @click="submitForm('ruleForm')">提交</el-button>
+                  <el-button type="primary" @click="resetForm('ruleForm')">重置</el-button>
+                  <el-button type="warning" data-dismiss="modal" data-act="cancel">取消</el-button>
+                </el-form-item>
+              </el-form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

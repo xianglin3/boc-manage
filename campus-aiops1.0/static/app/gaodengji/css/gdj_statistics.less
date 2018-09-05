@@ -1,0 +1,128 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left:50%;
+  margin-left: -80px;
+  width:160px;
+  height:160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  text-align: center;
+  z-index: 1060;
+}
+.panel-heading{
+  a.btn{
+    margin: 5px 10px 5px 0px;
+  }
+}
+.radio_group{
+  margin-bottom: 10px;
+  .radio-inline{
+    margin: 4px 24px 4px 0px;
+    input{
+      width: 20px;
+      height: 20px;
+      margin: 0px 0px 0px -24px;
+    }
+    span{
+      font-weight: 900;
+    }
+  }
+}
+
+.btn_group{
+  position: relative;
+  .pie_legend{
+    position: absolute;
+    left: 2px;
+    top: 40px;
+    z-index: 2;
+    background-color: #fff;
+    .legend{
+      border: 1px solid #dddddd;
+      width: 155px;
+      float: left;
+      height: 394px;
+      overflow-y: auto;
+      padding: 6px;
+      .legend_data{
+        .btn{
+          margin: 0px 4px 4px 0px;
+        }
+        .btn.active{
+          background-color: #00c0ef;
+          border-color: #00acd6;
+          color: #fff;
+        }
+      }
+    }
+    #legend_data1{
+      border-left: none;
+    }
+  }
+}
+
+#pie_statistics{
+  height: 400px;
+  z-index: 1;
+  left: 310px;
+  width: calc(~"100% - 310px");
+}
+
+div.dataTables_wrapper{
+  margin-top: 10px;
+  &>div.dt-buttons{
+    margin-left: 8px;
+    top:-2px;
+    &>a.dt-button{
+      padding: 4px 22px;
+      background: #00c0ef;
+      border-color: #00acd6;
+      color: #fff;
+      &:hover{
+        background: #00acd6;
+      }
+    }
+  }
+  .table{
+    thead{
+      background-color: #3c8dbc;
+      color: #fff;
+    }
+  }
+  .table tr td,.table tr th{
+    padding: 4px 6px;
+  }
+  .dataTables_info{
+    float: right;
+    clear: none;
+    padding-top: 0px;
+  }
+}
+
+#myModal{
+  div.modal-content{
+    border-radius: 4px;
+    div.modal-body{
+      ul{
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px;
+        li{
+          margin: 3px 0px;
+          b{
+            display: inline-block;
+            width: 50%;
+            text-align: right;
+          }
+          span{
+            display: inline-block;
+            width: 45%;
+          }
+        }
+      }
+    }
+  }
+}

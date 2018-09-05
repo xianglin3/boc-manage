@@ -1,0 +1,37 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}信息更新与同步{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block headcontent %}
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/datatables/media/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/index.css"/>
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/dataRefresh.css"/>
+{% endblock %}
+{% block pagecontent %}
+    {% include "campus_aiops/navBase.html"%}
+    {% verbatim myblock %}
+    <div id="refresh" class="refresh-list">
+    	<el-card class="box-card">
+    		<el-tag style="margin:0 0 20px 0;">数据刷新说明:</el-tag>
+            <p>- 系统每天会在特定时间自动完成数据同步：EAD信息更新为每天13:15；园区端口信息更新为每天13:30；园区智能运维信息同步为每天14:00。</p>
+    		<p>- 当使用过程中发现数据更新时间不及时，可以手动进行数据更新和同步。</p>
+            <p>- 手动更新和同步数据时，请尽量避开自动同步的时间，避免同时进行。</p>
+			<p>- 因涉及数据量较大，手动操作请不要过于频繁。</p>
+			<p><strong>-  手工同步更新顺序：EAD信息更新和园区端口信息更新不分前后，根据实际需要进行；园区智能运维信息同步最后进行。</strong></p>
+            <hr/>
+			<div>
+				<el-button @click='eadRe' type="primary">EAD信息更新</el-button>
+				<el-button @click='allPortRe' type="primary">园区端口信息更新</el-button>
+				<el-button @click='portRe' type="primary">园区智能运维信息同步</el-button>
+			</div>
+		</el-card>
+        <div class="preloader" v-show="loading"><i class="fa fa-spinner fa-spin fa-5x"></i></div>
+    </div>
+    {% endverbatim myblock %}
+{% endblock %}
+{% block bodycontent %}
+    <script src="/static/jquery_datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/static/bower_components/datatables/media/js/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/navBase.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/dataRefresh.js"></script>
+{% endblock %}

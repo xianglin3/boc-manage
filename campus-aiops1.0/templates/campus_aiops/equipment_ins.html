@@ -1,0 +1,47 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}设备检测{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block headcontent %}
+    <link rel="stylesheet" href="/static/equipment-icon/iconfont.css"/>
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/equipment_ins.css"/>
+<style>
+
+</style>
+{% endblock %}
+{% block pagecontent %}
+    {% verbatim myblock %}
+    <div class="equipment" id="equipment" v-block>
+        <h2>N7K设备检测</h2>
+        <div style="padding:40px 0;">
+            <span style="font-weight:600;">NTK IP</span>
+            <el-input autofocus="true" v-model="checkIp" style="display:inline-block;width:200px;margin:0 20px;" placeholder="请输入IP"></el-input>
+            <el-button type="primary" @click="check">完整检查</el-button>
+        </div>
+        <el-row :gutter="40">
+            <el-col :span="6" v-for="(item,index) in dataList" :key="index">
+                <div class="card">
+                    <div class="icons" style="height:50%">
+                        <i class="equiIcon iconfont icon-module"></i>
+                        <i class="status iconfont" :class="item.status == 'yes'?'codeY icon-shixinduihao':'codeN icon-shixinchahao'"></i>
+                    </div>
+                    <h4 style="font-size:16px;font-weight:600;">{{item.title}}</h4>
+                    <div>
+                        <el-button type="text" @click="openDialog(item.result,item.title+'-信息查看')">信息查看</el-button>
+                        <el-button type="text" @click="openDialog(item.log,item.title+'-日志')">日志</el-button>
+                        <el-button type="text" @click="openDialog(item.check_rule,item.title+'-检查依据')">检查依据</el-button>
+                    </div>
+                </div>
+            </el-col>
+        </el-row>
+        <el-dialog :title="dialogTitle" :visible.sync="dialogVisible">
+            <pre>{{dialogList}}</pre>
+            <div slot="footer" class="dialog-footer" style="text-align:center;">
+                <el-button type="primary" @click="dialogVisible = false">关 闭</el-button>
+            </div>
+        </el-dialog>
+    </div>
+    {% endverbatim myblock %}
+{% endblock %}
+{% block bodycontent %}
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/equipment_ins.js"></script>
+{% endblock %}

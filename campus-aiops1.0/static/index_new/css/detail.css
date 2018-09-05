@@ -1,0 +1,13 @@
+/*
+* 2018-6-28 xianglin
+*/
+[v-cloak]{
+    display:none;
+}
+body{
+    background-image:url(../img/detailBg.jpg);
+    background-size:cover;
+}
+#detail .el-card{
+    border-top:4px solid #ff8c19;
+}

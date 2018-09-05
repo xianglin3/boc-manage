@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block pagetitle %}网络运维自开发快捷工具平台{% endblock %}</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="/static/AdminLTE/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/static/AdminLTE/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="/static/AdminLTE/dist/css/skins/_all-skins.css">
+    <link href="/static/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!--自定义样式 皮肤样式-->
+    <link rel="stylesheet" href="/static/skinAsset/css/adminLTE.css">
+    <!-- element 2.4.2 -->
+    <link rel="stylesheet" type="text/css" href="/static/element-ui1/lib/theme-default/index.css">
+    <!-- vue js 2.5.16 -->
+    <script src="/static/vue/vue.min.js"></script>
+    {% block headcontent %}
+        {#        这里是head里的内容，比如css js等的引用和自己的填写#}
+    {% endblock %}
+    <style>
+        body {
+            height: auto;
+            font-family: Microsoft YaHei;
+        }
+
+        .rTop {
+            width: 70px;
+            height: 60px;
+            text-align: center;
+            font-size: small;
+            line-height: 25px;
+            position: fixed;
+            right: 10px;
+            bottom: 400px;
+            border-bottom-color: #333;
+            border-right-color: #333;
+            margin: 5px;
+            cursor: pointer;
+            display: block;
+        }
+
+        /*用来修改左侧菜单样式的代码*/
+        #sidebar-menu .treeview-menu{
+            padding-left: 20px;
+        }
+
+    </style>
+    <script>
+        {#<!--拖动滚动条或滚动鼠标轮-->#}
+        {#window.onscroll=function(){#}
+        {#if(document.body.scrollTop||document.documentElement.scrollTop>0){#}
+        {#document.getElementById('rTop').style.display="block"}else{#}
+        {#document.getElementById('rTop').style.display="none"}}#}
+        {#<!--点击“回到顶部”按钮-->#}
+        function toTop() {
+            window.scrollTo('0', '0');
+        }
+    </script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="/index" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+{#            <span class="logo-mini"><b>A</b>LT</span>#}
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg" style="font-size:16px; font-family:Microsoft YaHei">网络运维自开发快捷工具</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- Notifications: style can be found in dropdown.less -->
+                    <li class="dropdown notifications-menu">
+                        <a href="javascript:void(0)" class="dropdown-toggle" id="tabMenu"></a>
+                    </li>
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa  fa-folder fa-bell-o"></i>
+                            <span class="label label-warning">0</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">您有 0条告警需要处理</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa  fa-folder fa-users text-aqua"></i> 5 new members joined today
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">View all</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <div class="hidden" id="login_user">{{ user }}</div>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="/static/img/head.png" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{ user }}:{{ user.last_name }}{{ user.first_name }}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="/static/img/head.png" class="img-circle"
+                                     alt="User Image">
+
+                                <p>
+                                    <small>上次登陆：{{ user.last_login }}</small>
+                                    <small>Email {{ user.email }}</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa  fa-folder fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="/static/img/head.png" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>{{ user.last_name }}{{ user.first_name }}</p>
+                    {% if  user.last_name != null %}
+                        <a href="/logout"><i class="fa  fa-folder fa-circle text-success"></i> online...退出</a>
+                    {% endif %}
+                    {% if  user.last_name == null %}
+                        <a href="/login"><i class="fa  fa-folder fa-circle text-success"></i> 登陆</a>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- search form -->
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <div id="sidebar-menu">
+                <span>hello world</span>
+                <!--<ul class="sidebar-menu">
+                    <li class="header">让运维更得心应手</li>
+                    <li class="treeview">
+                    <a href="#">
+                    <i class="fa  fa-dashboard"></i> <span>快速获取</span>
+                    </a>
+                    <ul class="treeview-menu">
+                    <li><a href="/cli_realtime">&nbsp;&nbsp;&nbsp;&nbsp;命令行信息实时采集</a></li>
+                    <li><a href="/deviceassets" title="快速设备名称、设备管理IP、型号、系列、类型、厂商、序列号、槽位等">&nbsp;&nbsp;&nbsp;&nbsp;设备资产信息</a>
+                    </li>
+                    <li><a href="/quickget/deviceInfo2DB">&nbsp;&nbsp;&nbsp;&nbsp;信息自动入库(待开发)</a>
+                    </li>
+                    </ul>
+                    </li>
+                    <li class="treeview">
+                    <a href="#"><i class="fa  fa-search"></i><span>快捷查询</span></a>
+                    <ul class="treeview-menu">
+                    <li>
+                    <a href="/accessresource_publish/">&nbsp;&nbsp;&nbsp;&nbsp;机房接入资源信息发布</a>
+                    </li>
+                    <li>
+                    <a href="http://21.122.17.180:5000/default/tsa/modules/serveraccess/serveraccess.html"
+                    target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;服务器接入定位查询</a>
+                    </li>
+                    <li>
+                    <a href="/quicksearch/vm_access">&nbsp;&nbsp;&nbsp;&nbsp;虚拟机接入查询(待开发)</a>
+                    </li>
+                    <li>
+                    <a href="/quicksearch/firewll_config">&nbsp;&nbsp;&nbsp;&nbsp;防火墙配置查询(待开发)</a>
+                    </li>
+                    <li>
+                    <a href="/SANWebTools/">&nbsp;&nbsp;&nbsp;&nbsp;存储网信息查询</a>
+                    </li>
+                    <li>
+                    <a href="/campus_access/">&nbsp;&nbsp;&nbsp;&nbsp;园区终端接入定位查询</a>
+                    </li>
+                    <li>
+                    <a href="http://21.122.18.74:8000/tunnelflow/" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;HUR异地灾备流量监控工具</a>
+                    </li>
+                    <li>
+                    <a href="/lanintstatistics/archive/">&nbsp;&nbsp;&nbsp;&nbsp;黑山扈局域网接入资源统计</a>
+                    </li>
+                    </ul>
+                    </li>
+                    <li class="treeview">
+                    <a href="#"><i class="fa fa-warning"></i><span>快捷分析</span> </a>
+                    <ul class="treeview-menu">
+                    <li>
+                    <a href="/todo" title="含vPC，根据交换机型号、Portchannel及IP地址信息进行定位">&nbsp;&nbsp;&nbsp;&nbsp;IP通讯对Portchannel链路定位(待开发)</a>
+                    </li>
+                    <li>
+                    <a href="/yijianshebeizhuangtaifenxi">&nbsp;&nbsp;&nbsp;&nbsp;一键设备状态分析(待开发)</a>
+                    </li>
+                    <li>
+                    <a href="/juhelianlu">&nbsp;&nbsp;&nbsp;&nbsp;聚合链路数据流定位(待开发)</a>
+                    </li>
+                    <li>
+                    <a href="/jiaohuanjijuheduank">&nbsp;&nbsp;&nbsp;&nbsp;交换机聚合端口状态分析(待开发)</a>
+                    </li>
+                    <li>
+                    <a href="/yingyongxitongjieru">&nbsp;&nbsp;&nbsp;&nbsp;应用系统接入端口分析(待开发)</a>
+                    </li>
+                    <li>
+                    <a href="/vpcyujing">&nbsp;&nbsp;&nbsp;&nbsp;vPC状态自动预警(待开发)</a>
+                    </li>
+                    <li>
+                    <a href="/guangbofengbao">&nbsp;&nbsp;&nbsp;&nbsp;广播风暴自动预警(待开发)</a>
+                    </li>
+                    <li>
+                    <a href="/wanglbutong">&nbsp;&nbsp;&nbsp;&nbsp;网络不通问题分析(待开发)</a>
+                    </li>
+                    </ul>
+                    </li>
+                    <li class="treeview">
+                    <a href="#">
+                    <i class="fa fa-ambulance"></i> <span>快捷处理</span>
+                    </a>
+                    <ul class="treeview-menu">
+                    <li>
+                    <a href="/portconfiger/">&nbsp;&nbsp;&nbsp;&nbsp;准入推广工具</a>
+                    </li>
+                    <li>
+                    <a href="http://22.1.111.29:8002/" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;防火墙配置自动生成</a>
+                    </li>
+                    <li>
+                    <a href="/littletools/">&nbsp;&nbsp;&nbsp;&nbsp;外部攻击阻断配置自动生成</a>
+                    </li>
+                    <li>
+                    <a href="http://22.1.111.29:8001/" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;通用配置自动生成</a>
+                    </li>
+                    <li>
+                    <a href="/CMCS_Tool/">&nbsp;&nbsp;&nbsp;&nbsp;一线需求配置自动推送</a>
+                    </li>
+                    <li>
+                    <a href="/GTMqiezhuan/">&nbsp;&nbsp;&nbsp;&nbsp;GTM流量切转(待开发)</a>
+                    </li>
+                    <li>
+                    <a href="/chukouyingyongyijiangeli">&nbsp;&nbsp;&nbsp;&nbsp;出口应用一键隔离(待开发)</a>
+                    </li>
+                    <li>
+                    <a href="/jiaohuchuli/">&nbsp;&nbsp;&nbsp;&nbsp;网络设备交互处理模块(待开发)</a>
+                    </li>
+                    <li>
+                    <a href="/IpAssign/">&nbsp;&nbsp;&nbsp;&nbsp;局域园区IP分配管理
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    </a>
+                    <ul class="treeview-menu">
+                    <li>
+                    <a href="/IpAssign/ipassign/"><i class="fa fa-dashboard fa-fw"></i> IP分配模块操作说明</a>
+                    </li>
+                    <li>
+                    <a href="/IpAssign/plannedip/"><i class="fa fa-table fa-fw"></i> 客户端在用IP信息</a>
+                    </li>
+                    <li>
+                    <a href="/IpAssign/planip/"><i class="fa fa-edit fa-fw"></i> IP分配</a>
+                    </li>
+                    <li>
+                    <a href="/IpAssign/allip/"><i class="fa fa-list-ul fa-fw"></i> 所有IP地址及VLAN规划</a>
+                    </li>
+                    <li>
+                    <a href="#"><i class="fa fa-circle-o"></i> 基础信息管理
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    </a>
+                    <ul class="treeview-menu">
+                    <li>
+                    <a href="/IpAssign/department/">部门信息管理</a>
+                    </li>
+                    <li>
+                    <a href="/IpAssign/download/">模板下载</a>
+                    </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </li>
+                    <li class="treeview">
+                    <a href="#"><i class="fa  fa-sitemap"></i> <span>办公小工具</span></a>
+                    <ul class="treeview-menu">
+                    <li>
+                    <a href="/meetingroom">&nbsp;&nbsp;&nbsp;&nbsp;会议室预定</a>
+                    </li>
+                    <li>
+                    <a href="/contacts">&nbsp;&nbsp;&nbsp;&nbsp;中心通讯录</a>
+                    </li>
+                    <li>
+                    <a href="/taxi">&nbsp;&nbsp;&nbsp;&nbsp;打车报销(待开发)</a>
+                    </li>
+                    <li>
+                    <a href="/bus">&nbsp;&nbsp;&nbsp;&nbsp;班车查询</a>
+                    </li>
+                    </ul>
+                    </li>
+                    <li class="treeview">
+                    <a href="#"><i class="fa  fa-users"></i> <span>团队工具</span></a>
+                    <ul class="treeview-menu">
+                    <li>
+                    <a href="http://22.122.18.192:9988/assets/" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;运维库</a>
+                    </li>
+                    <li>
+                    <a href="https://22.122.32.128:8001/" target="_blank">
+                    &nbsp;&nbsp;&nbsp;&nbsp;CMCS合规管理与配置</a>
+                    </li>
+                    <li>
+                    <a href="/teamtasks/">&nbsp;&nbsp;&nbsp;&nbsp;团队任务管理工具</a>
+                    </li>
+                    <li>
+                    <a href="https://21.122.17.73/algosec/data/index.php" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;Algosec防火墙访问控制</a>
+                    </li>
+                    <li>
+                    <a href="https://11.18.16.133" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;ACS管理界面</a>
+                    </li>
+                    <li>
+                    <a href="http://21.122.16.68:8000/UCP/" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;ACS密码重置</a>
+                    </li>
+                    <li>
+                    <a href="ftp://22.122.32.240" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;团队FTP</a>
+                    </li>
+                    <li>
+                    <a href="ftp://21.122.49.88" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;生产FTP</a>
+                    </li>
+                    <li>
+                    <a href="http://21.122.17.78/bocap" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;骨干网流量分析</a>
+                    </li>
+                    <li>
+                    <a href="http://21.122.17.64" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;互联网出口Netscout管理服务器</a>
+                    </li>
+                    <li>
+                    <a href="ftp://22.122.32.88" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;黑山扈出口IDP管理服务器</a>
+                    </li>
+                    <li>
+                    <a href="http://21.122.17.78:8080/BC3/" target="_blank">
+                    &nbsp;&nbsp;&nbsp;&nbsp;线路容量工具（外联）</a>
+                    </li>
+                    <li>
+                    <a href="http://21.122.18.72" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;DCMF网管工具</a>
+                    </li>
+                    <li>
+                    <a href="ftp://11.2.17.100" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;网络数据备份服务器</a>
+                    </li>
+                    </ul>
+                    </li>
+                    <li class="treeview">
+                    <a href="#"><i class="fa  fa-external-link"></i> <span>中心常用链接</span></a>
+                    <ul class="treeview-menu">
+                    <li>
+                    <a href="http://bocspfarm:81/SitePages/欢迎.aspx" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;新办公管理平台</a>
+                    </li>
+                    <li>
+                    <a href="http://22.122.52.100" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;运维流程平台</a>
+                    </li>
+                    <li>
+                    <a href="http://22.1.100.72/servlet/home" target="_blank">
+                    &nbsp;&nbsp;&nbsp;&nbsp;总行在线学习平台</a>
+                    </li>
+                    <li>
+                    <a href="http://22.1.100.197:9082/boc/indexedself.do" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;中心人力资源系统</a>
+                    </li>
+                    <li>
+                    <a href="http://bocdcportal:81/" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;工会活动管理系统</a>
+                    </li>
+                    <li>
+                    <a href="http://tolserver/" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;数据中心员工在线学习平台</a>
+                    </li>
+                    </ul>
+                    </li>
+                </ul>-->
+            </div>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        {#    <section class="content-header">#}
+        {#      <h1>#}
+        {#        Blank page#}
+        {#        <small>it all starts here</small>#}
+        {#      </h1>#}
+        {#      <ol class="breadcrumb">#}
+        {#        <li><a href="#"><i class="fa  fa-folder fa-dashboard"></i> Home</a></li>#}
+        {#        <li><a href="#">Examples</a></li>#}
+        {#        <li class="active">Blank page</li>#}
+        {#      </ol>#}
+        {#    </section>#}
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="page-header" style="font-family: 'Microsoft YaHei' ">{% block pageheader %}{% endblock %}</h3>
+
+                    <div id="request_times_div" class="box-tools pull-right">
+
+                    </div>
+                </div>
+                <div class="box-body">
+                    {% block pagecontent %}
+                        {#            这里是首页空白处内容    #}
+                    {% endblock %}
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 1.0.0
+        </div>
+        <strong>Copyright &copy; 2014-2017 <a href="http://22.1.111.29/">网络通讯</a>.</strong> All rights
+        reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa  fa-folder fa-home"></i></a></li>
+
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa  fa-folder fa-gears"></i></a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane" id="control-sidebar-home-tab">
+                <h3 class="control-sidebar-heading">Recent Activity</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                                <p>Will be 23 on April 24th</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-user bg-yellow"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+                                <p>New phone +1(800)555-1234</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+                                <p>nora@example.com</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+                                <p>Execution time 5 seconds</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
+
+                <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Custom Template Design
+                                <span class="label label-danger pull-right">70%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Update Resume
+                                <span class="label label-success pull-right">95%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Laravel Integration
+                                <span class="label label-warning pull-right">50%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Back End Framework
+                                <span class="label label-primary pull-right">68%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
+
+            </div>
+            <!-- /.tab-pane -->
+            <!-- Stats tab content -->
+            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+            <!-- /.tab-pane -->
+            <!-- Settings tab content -->
+            <div class="tab-pane" id="control-sidebar-settings-tab">
+                <form method="post">
+                    <h3 class="control-sidebar-heading">General Settings</h3>
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Report panel usage
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+                        <p>
+                            Some information about this general settings option
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Allow mail redirect
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+                        <p>
+                            Other sets of options are available
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Expose author name in posts
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+                        <p>
+                            Allow the user to show his name in blog posts
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Show me as online
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Turn off notifications
+                            <input type="checkbox" class="pull-right">
+                        </label>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Delete chat history
+                            <a href="javascript:void(0)" class="text-red pull-right"><i
+                                    class="fa  fa-folder fa-trash-o"></i></a>
+                        </label>
+                    </div>
+                    <!-- /.form-group -->
+                </form>
+            </div>
+            <!-- /.tab-pane -->
+        </div>
+    </aside>
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+<div class="rTop" id="rTop" style="bottom:50%;right:0;">
+    <div style="width:32px;height:32px;margin-left:40px; border-radius:50%;background:#fff;box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);margin-bottom:10px;">
+        <i class="fa  fa-arrow-up" onClick="toTop()" style="line-height:32px;"></i>
+    </div>
+    <div style="width:32px;height:32px;margin-left:40px;border-radius:50%;background:#fff;box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);">
+        <i class="fa  fa-reply"onClick="window.history.go(-1)" style="line-height:32px;"></i>
+    </div>
+</div>
+<!-- modal_alert -->
+
+<div class="modal fade" id="modal_alert" style="z-index: 10000">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #3c8dbc;padding: 5px 5px 5px 15px;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" style="color: #eee"></h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery 2.2.0 -->
+<script src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/static/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="/static/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="/static/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="/static/AdminLTE/plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="/static/AdminLTE/dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/static/AdminLTE/dist/js/demo.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="/static/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+<!-- vue JavaScript -->
+
+<script>
+    $(function () {
+
+        $('#side-menu').metisMenu();
+
+    });
+
+    //Loads the correct sidebar on window load,
+    //collapses the sidebar on window resize.
+    // Sets the min-height of #page-wrapper to window size
+    $(function () {
+        var url = window.location;
+        var element = $('ul.treeview-menu a').filter(function () {
+            return this.href == url || url.href.indexOf(this.href) == 0;
+        }).addClass('active').parent().addClass('active').parent().addClass('active').parent().addClass('active');
+
+    });
+</script>
+<script>
+    var pathname = window.location.pathname;
+    $.ajax({
+        type: 'POST',
+        url: '/UserManager/get_request_times/',
+        data: {"pathname": pathname},
+        success: function (data) {
+            var request_times = data['request_times'];
+            if (request_times>=0){
+                var $request_times_div = $('#request_times_div').empty();
+                $request_times_div.html("<i>本功能被"+request_times+"次访问使用</i>");
+            };
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("not get request times");
+        },
+        dataType: 'json'
+    });
+    //modal_alert---custom
+    $.alert = function(body,title,footer,size){
+        size = size || "modal-sm";
+        title = title || '提示：';
+        footer = footer || "";
+        body = body || "";
+        var modal = $("#modal_alert");
+        modal.find(".modal-dialog").addClass(size);
+        modal.find(".modal-title").html(title);
+        modal.find(".modal-footer").html(footer);
+        modal.find(".modal-body").html(body);
+        modal.modal();
+    }
+
+</script>
+<script type="text/javascript" src="/static/AdminLTE/dist/js/getMenu.js"></script>
+<!-- element-ui1 1.4.3 -->
+<script type="text/javascript" src="/static/element-ui1/lib/index.js"></script>
+{% block bodycontent %}
+    {#     这里是body里的js css等的内容添加处#}
+{% endblock %}
+</body>
+</html>

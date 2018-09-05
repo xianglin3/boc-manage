@@ -1,0 +1,114 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}白名单信息维护{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block headcontent %}
+    <link rel="stylesheet" type="text/css" href="/static/DataTables/datatables.min.css">
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/manage.css"/>
+<style>
+      .el-select .el-input {
+        width: 110px;
+      }
+      .downLoad{
+        display:none;
+       }
+</style>
+{% endblock %}
+{% block pagecontent %}
+    {% verbatim myblock %}
+    <div class="manage-list" id="manage" style="min-height:400px;">
+        <div class="preloader" v-show="loading"><i class="fa fa-spinner fa-spin fa-5x"></i></div>
+        <el-button type="primary" size="small" @click = 'toPage'>跳转按钮</el-button>
+        <div :class="showTable? '':'search'" style="padding:20px 0;">
+            <el-input style="width:350px; margin-left:100px;" autofucs="true" placeholder="请输入内容" v-model="selectInput" class="input-with-select">
+                <el-button v-if="showTable" slot="append" type="info" @click="searchBtn">查询</el-button>
+                <el-button v-if="!showTable" slot="append" type="info" @click="searchFirst">查询</el-button>
+            </el-input>
+            <div class="radio" style="padding:10px 0;width: 800px">
+                <el-radio-group v-model="searchRadio">
+                    <el-radio :label="'search_by_keyword'">自动匹配</el-radio>
+                    <el-radio :label="'mac'">MAC</el-radio>
+                    <el-radio :label="'ip'">接入ip</el-radio>
+                    <el-radio :label="'device'">交换机（IP或设备名）</el-radio>
+                    <el-radio :label="'sys_name'">应用名称</el-radio>
+                    <el-radio :label="'interface_desc'">端口描述</el-radio>
+                </el-radio-group>
+            </div>
+        </div>
+        <!-- ip_list table -->
+        <div  v-show="showTable">
+            <div class="row" style="padding-bottom:5px;">
+                <div class="col-lg-12">
+                    <button type="button" class="btn btn-info btn-xs" @click="checkGroup">批量检查</button>
+                    <button type="button" class="btn btn-info btn-xs" @click="downLoad">导出Excel</button>
+                    <div class="dropdown show-filed">
+                        <button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">显示字段<span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li data-stopPropagation="true" v-for = "(value,key) in showField">
+                                <label style="width:100%;"><input style="margin-right:6px;" type="checkbox" :value="value">{{key}}</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table id="table_id_example" class="table table-striped table-bordered table-hover" width="100%">
+                        <thead>
+                            <tr style="background: #337ab7; color:#fff;">
+                                <th class="text-center">
+                                    <input type="checkbox" class="checkall" />
+                                </th>
+                                <th class="text-center" v-for = 'ele in tableField'>{{ele.text}}</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                   </table>
+                </div>
+            </div>
+        </div>
+        <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" :size="dialogSize">
+            <div v-if="isTable">
+                <el-table
+                    :data="tableList"
+                    stripe
+                    @sort-change="sortData"
+                    style="width: 100%">
+                    <template
+                        v-for="(ele,index) in dialogField">
+                        <el-table-column
+                            :prop="ele.key"
+                            :label="ele.label"
+                            sortable="custom"
+                            :align="ele.align || 'left'">
+                        </el-table-column>
+                    </template>
+                </el-table>
+                <el-pagination
+                  @size-change="onChangeCurPageSize"
+                  @current-change="onChangeCurPage"
+                  :current-page="pagination.current_page"
+                  :page-sizes="pagination.page_sizes"
+                  :page-size="pagination.page_size"
+                  :layout="pagination.layout"
+                  :total="pagination.total">
+                </el-pagination>
+            </div>
+            <ul v-else class="dialogView">
+                <li v-for="item in dialogField">
+                    <label>{{item.label}}</label>
+                    <pre>{{dialogData[item.key]}}</pre>
+                </li>
+            </ul>
+          <div slot="footer" class="dialog-footer" style="text-align:center;">
+            <el-button @click="dialogVisible = false">关闭</el-button>
+          </div>
+        </el-dialog>
+    </div>
+    {% endverbatim myblock %}
+{% endblock %}
+{% block bodycontent %}
+    <script src="/static/DataTables/datatables.min.js"></script>
+    <!--<script type="text/javascript" src="/static/bower_components/datatables/media/js/dataTables.bootstrap.js"></script>-->
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/jquery.form.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/manage.js"></script>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}树形图{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block headcontent %}
+	<link rel="stylesheet" href="/static/index_new/css/index.css" />
+<style>
+    [v-block]{
+        display:none;
+    }
+    #textarea{
+        min-height:80px;
+        border:1px solid #333;
+        background:#fff;
+    }
+    #textarea i{
+        font-style:normal;
+        color:red;
+    }
+    font{
+        color:#333;
+    }
+</style>
+{% endblock %}
+{% block pagecontent %}
+{% verbatim myblock %}
+	<div id="treeEcharts" v-block style="overflow:auto;">
+        <div style="padding-bottom:20px;">
+            <!--<el-autocomplete
+              class="inline-input input-width"
+              v-model="checkInput"
+              :fetch-suggestions="querySearch"
+              placeholder="请输入内容"
+              :trigger-on-focus="true"
+              @select="handleSelect"
+            ></el-autocomplete>-->
+            <el-cascader
+              :options="casData"
+              :show-all-levels="false"
+              filterable
+              @change="changeVal"
+              clearable="true"
+            ></el-cascader>
+            <el-button type="primary" @click="drawEchart">检查</el-button>
+            <el-button
+                type="primary"
+                @click="upDate"
+                v-loading.fullscreen.lock="fullscreenLoading">更新</el-button>
+        </div>
+        <div id="tree" class="" style=" width:100%;background:#fff;">
+        </div>
+        <pre id="textarea" contenteditable="true">nihaoya<br/>shibushi <i>(注意)</i><br>12312312313</pre>
+        <textarea name="" id="textVal" cols="30" rows="10"></textarea>
+	</div>
+{% endverbatim myblock %}
+{% endblock %}
+{% block bodycontent %}
+	<!--<script type="text/javascript" charset="utf-8" src="/static/index_new/js/collapse.js"></script>-->
+	<script type="text/javascript" charset="utf-8" src="/static/index_new/js/echarts.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/static/index_new/js/tree.js"></script>
+{% endblock %}

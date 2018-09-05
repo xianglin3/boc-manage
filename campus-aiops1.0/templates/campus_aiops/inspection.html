@@ -1,0 +1,35 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}大二层巡检结果查询{% endblock %}
+{% block pageheader %}大二层巡检结果查询{% endblock %}
+{% block headcontent %}
+    <!-- DataTables CSS(with Buttons)-->
+    <link href="/static/jquery_datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/static/jquery_datatables/buttons-1.2.4/css/buttons.dataTables.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/index.css"/>
+    <link rel="stylesheet" href="/static/app/device_switch/css/inspection.css">
+{% endblock %}
+{% block pagecontent %}
+    {% include "campus_aiops/navBase.html"%}
+    <ul class="inspection nav nav-tabs">
+        <li class="active"><a href="mac_results">MAC地址条目数巡检结果</a></li>
+        <li ><a href="stp_active_results">STP logical ports在用数巡检结果</a></li>
+    </ul>
+    <div class="page_content">
+        <table class="table table-striped table-bordered table-hover" id="dataTable">
+            <!---动态添加-->
+        </table>
+    </div>
+    </div>
+    </div>
+    <div class="preloader hidden"><i class="fa fa-spinner fa-spin fa-5x"></i></div>
+{% endblock %}
+{% block bodycontent %}
+    <!-- DataTables JavaScript(with Buttons)-->
+    <script src="/static/jquery_datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/static/jquery_datatables/buttons-1.2.4/js/dataTables.buttons.min.js"></script>
+    <script src="/static/jquery_datatables/buttons-1.2.4/jszip.min.js"></script>
+    <script src="/static/jquery_datatables/buttons-1.2.4/js/buttons.html5.min.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="/static/app/device_switch/js/inspection.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/navBase.js"></script>
+{% endblock %}

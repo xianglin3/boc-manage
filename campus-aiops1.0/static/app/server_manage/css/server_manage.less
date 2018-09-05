@@ -1,0 +1,170 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left:50%;
+  margin-left: -80px;
+  width:160px;
+  height:160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  text-align: center;
+  z-index: 1060;
+}
+div.page{
+  div.row{
+    >div{
+      margin-bottom: 10px;
+    }
+  }
+  #search_box{
+    >div{
+      @media (min-width: 768px){
+        .form-control{
+          width: 176px;
+        }
+      }
+      .form-control{
+        height: 30px;
+        padding: 2px;
+      }
+      label{
+        width: 92px;
+        text-align: right;
+      }
+      button.btn{
+        padding: 4px 16px;
+        margin-right: 6px;
+      }
+    }
+  }
+  table.table{
+    thead{
+      color: #fff;
+      background-color: #3c8dbc;
+    }
+    tr{
+      td,th{
+        padding: 2px 4px;
+        vertical-align: middle;
+        input[type=checkbox]{
+          width: 18px;height: 18px;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+}
+#show_filed{
+  float: left;
+  margin-right: 4px;
+}
+#server_modal{
+  @media (min-width: 768px){
+    .modal-dialog {
+      width: 748px;
+      margin: 50px auto;
+    }
+  }
+  .modal-content {
+    border-radius: 4px;
+    label{
+      display: block;
+      .form-control{
+        resize: none;
+        width: 100%;
+      }
+    }
+    ul{
+      padding: 0px;
+      margin: 0px -15px;
+      list-style-type: none;
+      li{
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+    }
+    .user_info{
+      .btn{
+        width: 34px;
+      }
+      .rmv_btn{
+        color: #e4393c;
+        font-size: 22px;
+        position: absolute;
+        top: 35%;
+        left: -11px;
+        cursor: pointer;
+      }
+    }
+    .checkbox{
+      label{
+        display: inline-block;
+        input.input_checkbox{
+          width: 20px;
+          height: 20px;
+          margin-top: 0px;
+        }
+      }
+      .pmachine_ip{
+        display: inline-block;
+        font-weight: 900;
+        border: 1px solid #ddd;
+        padding: 3px 16px;
+        width: 250px;
+        height: 28px;
+        vertical-align: middle;
+      }
+    }
+    .pmachine_info{
+      border: 1px solid #ddd;
+      padding: 10px;
+      .search_input{
+        border-bottom: 1px solid #ddd;
+        input{
+          margin-left: 6px;
+          height: 28px;
+        }
+        .btn{
+          padding: 3px 24px;
+          vertical-align: top;
+          margin-left: -4px;
+        }
+      }
+    }
+    .table{
+      thead{
+        background-color: #3c8dbc;
+        color: #fff;
+      }
+      tr{
+        td,th{
+          padding: 2px 4px;
+        }
+      }
+      input{
+        width: 20px;
+        height: 20px;
+        margin-top: 0px;
+      }
+    }
+  }
+}
+
+//批量导入按钮
+#server_manage{
+  .file{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    input {
+      position: absolute;
+      font-size: 100px;
+      right: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+}

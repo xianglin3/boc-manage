@@ -1,0 +1,155 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 1060;
+}
+div.page div.row > div {
+  margin-bottom: 10px;
+}
+@media (min-width: 768px) {
+  div.page #search_box > div .form-control {
+    width: 176px;
+  }
+}
+div.page #search_box > div .form-control {
+  height: 30px;
+  padding: 2px;
+}
+div.page #search_box > div label {
+  width: 92px;
+  text-align: right;
+}
+div.page #search_box > div button.btn {
+  padding: 4px 16px;
+  margin-right: 6px;
+}
+div.page table.table thead {
+  color: #fff;
+  background-color: #3c8dbc;
+}
+div.page table.table tr td,
+div.page table.table tr th {
+  padding: 2px 4px;
+  vertical-align: middle;
+}
+div.page table.table tr td input[type=checkbox],
+div.page table.table tr th input[type=checkbox] {
+  width: 18px;
+  height: 18px;
+  margin-top: 5px;
+}
+#show_filed {
+  float: left;
+  margin-right: 4px;
+}
+@media (min-width: 768px) {
+  #server_modal .modal-dialog {
+    width: 748px;
+    margin: 50px auto;
+  }
+}
+#server_modal .modal-content {
+  border-radius: 4px;
+}
+#server_modal .modal-content label {
+  display: block;
+}
+#server_modal .modal-content label .form-control {
+  resize: none;
+  width: 100%;
+}
+#server_modal .modal-content ul {
+  padding: 0px;
+  margin: 0px -15px;
+  list-style-type: none;
+}
+#server_modal .modal-content ul li {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+#server_modal .modal-content .user_info {
+  min-height: 52px;
+}
+#server_modal .modal-content .user_info .add_login {
+  color: #00acd6;
+  font-size: 22px;
+  position: absolute;
+  cursor: pointer;
+  top: 24px;
+}
+#server_modal .modal-content .user_info .rmv_btn {
+  color: #e4393c;
+  font-size: 22px;
+  position: absolute;
+  top: 35%;
+  left: -11px;
+  cursor: pointer;
+}
+#server_modal .modal-content .checkbox label {
+  display: inline-block;
+}
+#server_modal .modal-content .checkbox label input.input_checkbox {
+  width: 20px;
+  height: 20px;
+  margin-top: 0px;
+}
+#server_modal .modal-content .checkbox .pmachine_ip {
+  display: inline-block;
+  font-weight: 900;
+  border: 1px solid #ddd;
+  padding: 3px 16px;
+  width: 250px;
+  height: 28px;
+  vertical-align: middle;
+}
+#server_modal .modal-content .pmachine_info {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+#server_modal .modal-content .pmachine_info .search_input {
+  border-bottom: 1px solid #ddd;
+}
+#server_modal .modal-content .pmachine_info .search_input input {
+  margin-left: 6px;
+  height: 28px;
+}
+#server_modal .modal-content .pmachine_info .search_input .btn {
+  padding: 3px 24px;
+  vertical-align: top;
+  margin-left: -4px;
+}
+#server_modal .modal-content .table thead {
+  background-color: #3c8dbc;
+  color: #fff;
+}
+#server_modal .modal-content .table tr td,
+#server_modal .modal-content .table tr th {
+  padding: 2px 4px;
+}
+#server_modal .modal-content .table input {
+  width: 20px;
+  height: 20px;
+  margin-top: 0px;
+}
+#server_manage .file {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+#server_manage .file input {
+  position: absolute;
+  font-size: 100px;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+}

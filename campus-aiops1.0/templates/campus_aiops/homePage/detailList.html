@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>设备警告详情</title>
+	<!-- element 2.4.2 -->
+    <link rel="stylesheet" type="text/css" href="/static/element-ui/lib/theme-chalk/index.css">
+	<link rel="stylesheet" href="/static/index_new/css/detail.css" />
+</head>
+<body>
+	<div id="detail" v-cloak>
+		<div class="grid-content bg-purple" style="width:90%;margin:0 auto;padding-top:36px;">
+			<el-card class="box-card" shadow="hover">
+				<div slot="header" class="clearfix">
+					<h2><span>设备警报详情</span><i class="el-icon-warning" style="color:#ff8c19;margin-left:10px;"></i></h2>
+				</div>
+				<el-table
+					:data="tableData">
+					<el-table-column
+					  prop="dev_name"
+					  width="190"
+					  label="设备名称">
+					</el-table-column>
+					<el-table-column
+					  prop="area"
+					  width="110"
+					  label="功能区">
+					</el-table-column>
+					<el-table-column
+					  prop="node"
+					  width="130"
+					  label="IP地址">
+					</el-table-column>
+					<el-table-column
+					  prop="lasttime"
+					  width="180"
+					  label="时间">
+					</el-table-column>
+					<el-table-column
+					  prop="summary"
+					  label="警告信息">
+					</el-table-column>
+				  </el-table>
+			</el-card>
+		</div>
+	</div>
+</body>
+<!-- jQuery 2.2.0 -->
+<script src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/static/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- vue js 2.5.16 -->
+<script src="/static/vue/vue.min.js"></script>
+<!-- element-ui1 2.4.2 -->
+<script src="/static/element-ui/lib/index.js"></script>
+
+<script charset="utf-8" src="/static/index_new/js/detail.js"></script>
+
+</html>

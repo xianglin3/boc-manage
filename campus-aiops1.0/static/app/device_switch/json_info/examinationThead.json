@@ -1,0 +1,7 @@
+[
+  { "data": "id","CH":"ID"},
+  { "data": "commands","CH":"命令"},
+  { "data": "device_model","CH":"设备类型"},
+  { "data": "update_time","CH":"最后更新"},
+  { "data": "opt","CH":"操作"}
+]

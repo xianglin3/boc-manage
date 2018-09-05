@@ -1,0 +1,54 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}园区设备信息维护{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block headcontent %}
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/datatables/media/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/dev.css"/>
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/index.css"/>
+{% endblock %}
+{% block pagecontent %}
+    {% include "campus_aiops/navBase.html"%}
+{% verbatim myblock %}
+    <div class="dev-list" id="dev">
+        <div class="clearfix">
+            <div class="floatLeft">
+                <a href="http://22.1.111.29/deviceassets/device_list_add/" target="_blank" class="btn btn-primary btn-sm">上传设备信息</a>
+                <button type="button" class="btn btn-primary btn-sm" @click="downloadDev()">批量下载</button>
+            </div>
+            <div class="floatRight" style="padding-right:20px;">
+				<el-select v-model="searchArea" clearable placeholder="选择地域进行查询">
+					<el-option :label="ele" :key="ele" :value="ele" v-for="ele in areaList"></el-option>
+				</el-select>
+                <el-button style="margin-left:10px;" type="primary" @click="searchBtn">查询</el-button>
+            </div>
+        </div>
+        <hr />
+        <div>
+            <table id="table_id_example" class="table table-striped table-bordered table-hover" width="100%"> 
+                <thead class="text-center"> 
+                    <tr style="background: #3c8dbc; color:#fff;">
+                        <th class="text-center" style="width:50px;">
+                            <input type="checkbox" class="checkall" />
+                        </th>
+                        <th style="width:100px;" class="text-center" v-for = 'ele in tableField'>{{ele.text}}</th>
+                    </tr> 
+                </thead> 
+                <tbody>
+                    <tr v-for = '(ele,index) in devList' class="text-center">
+                        <td style="width:50px;" class="text-center"><input type="checkbox"  class="checkchild"  :value="ele['id']" /></td>
+                        <td v-for = 'obj in tableField'>{{returnData(ele,obj.field)}}</td>
+                    </tr>
+                </tbody>
+           </table> 
+        </div>
+        <div class="preloader" v-show="loading"><i class="fa fa-spinner fa-spin fa-5x"></i></div>
+    </div>
+{% endverbatim myblock %}
+{% endblock %}
+{% block bodycontent %}
+    <script src="/static/jquery_datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/datatables/media/js/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/jquery.form.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/navBase.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/dev.js"></script>
+{% endblock %}

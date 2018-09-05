@@ -1,0 +1,28 @@
+{
+  "thead":[
+    {"data":"device_ip","CH":"设备IP"},
+    {"data":"device_name","CH":"设备名"},
+    {"data":"command","CH":"命令"},
+    {"data":"result","CH":"结果"}
+  ],
+  "lang":{
+      "sProcessing": "处理中...",
+      "sLengthMenu": "每页显示 _MENU_ 条记录",
+      "sZeroRecords": "没有匹配结果",
+      "sInfo": "显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 条",
+      "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+      "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+      "sInfoPostFix": "",
+      "sSearch": "全文查找:",
+      "sUrl": "",
+      "sEmptyTable": "未搜索任何数据...",
+      "sLoadingRecords": "载入中...",
+      "sInfoThousands": ",",
+      "oPaginate": {
+          "sFirst": "首页",
+          "sPrevious": "上页",
+          "sNext": "下页",
+          "sLast": "末页"
+      }
+  }
+}

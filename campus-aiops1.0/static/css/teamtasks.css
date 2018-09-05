@@ -1,0 +1,57 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+div.widget-box .container-fluid div.row > div {
+  margin-bottom: 10px;
+}
+div.widget-box .container-fluid div.row label {
+  width: 32%;
+  text-align: right;
+}
+div.widget-box .container-fluid div.row select.form-control {
+  border-radius: 4px;
+  display: inline-block;
+  width: 56%;
+}
+div.widget-box .dataTable_wrapper table thead tr {
+  background-color: #5cb85c;
+}
+div.widget-box .dataTable_wrapper table thead tr th {
+  color: #fff;
+}
+div.widget-box .dataTable_wrapper table tbody tr td {
+  font-size: 12px;
+}
+div.widget-box .dataTable_wrapper table tbody tr td.edit_view {
+  padding: 8px 2px;
+}
+div.widget-box .dataTable_wrapper table tbody tr td.edit_view span > a {
+  padding: 4px 3px;
+  border: 1px solid #3c8dbc;
+  margin-left: 4px;
+  border-radius: 4px;
+}
+div.widget-box .dataTable_wrapper table tbody tr[data-child] {
+  background-color: #fff;
+}
+div.widget-box .dataTable_wrapper table tbody tr[data-parent] {
+  cursor: pointer;
+  background-color: #ededed;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf6fd), to(#d5e8f3));
+  /*background-image: -webkit-linear-gradient(top, #fefefe, #dddddd);*/
+  /*background-image: -moz-linear-gradient(top, #fefefe, #dddddd);*/
+  /*background-image: -ms-linear-gradient(top, #fefefe, #dddddd);*/
+  /*background-image: -o-linear-gradient(top, #fefefe, #dddddd);*/
+  /*background-image: linear-gradient(to bottom, #fefefe, #dddddd);*/
+}

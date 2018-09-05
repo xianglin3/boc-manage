@@ -1,0 +1,13 @@
+[
+  {"field":"ip","CH":"IP（记录数）","width":14},
+  {"field":"name","CH":"设备名","width":10},
+  {"field":"factory","CH":"厂商","width":8},
+  {"field":"status","CH":"状态","width":10},
+  {"field":"business_type","CH":"运维组","width":8},
+  {"field":"worker","CH":"责任人","width":10},
+  {"field":"followup","CH":"跟进记录","width":10},
+  {"field":"followup_person","CH":"跟进人","width":10},
+  {"field":"update_time","CH":"跟进日期","width":10},
+  {"field":"passing_day","CH":"经历时间","width":10},
+  {"field":"iskey","CH":"操作","width":10}
+]

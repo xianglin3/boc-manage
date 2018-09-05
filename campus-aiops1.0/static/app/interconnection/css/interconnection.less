@@ -1,0 +1,47 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left:50%;
+  margin-left: -80px;
+  width:160px;
+  height:160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+.box-body{
+  ul.nav{
+    &>li>a{
+      padding: 6px 10px;
+      margin-right: 6px;
+    }
+  }
+  .page_content{
+    margin-top: 16px;
+    .table{
+      thead{
+        background-color: #3c8dbc;
+        color: #fff;
+      }
+      td,th{
+        padding: 4px 8px;
+      }
+    }
+    .dataTables_wrapper{
+      .buttons-excel{
+        padding: 1px 14px;
+      }
+      .dataTables_filter{
+        input{
+          border-radius: 4px;
+        }
+        label{
+          margin-bottom: 2px;
+        }
+      }
+    }
+  }
+}

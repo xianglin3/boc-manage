@@ -1,0 +1,58 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+.searchForm form.container-fluid div.row label {
+  width: 26%;
+  text-align: right;
+}
+.searchForm form.container-fluid div.row input {
+  width: 60%;
+  height: 34px;
+  padding-left: 10px;
+  border-radius: 4px;
+}
+@media (min-width: 992px) {
+  .searchForm form.container-fluid div.row #sysLog {
+    position: absolute;
+    width: 156%;
+  }
+}
+.searchForm form.container-fluid div.row .systemLog label {
+  margin-top: 4px;
+}
+.searchForm form.container-fluid div.row div.col-md-offset-4 {
+  text-align: center;
+}
+.searchForm form.container-fluid div.row div.col-md-offset-4 .btn {
+  width: 32%;
+}
+.systemLog {
+  margin-top: 6px;
+}
+.systemLog input[type=search] {
+  border-radius: 4px;
+  margin-right: 16px;
+}
+.systemLog .table-bordered {
+  border-color: #ccc;
+}
+.systemLog .table-bordered thead > tr {
+  background-color: #6D5397;
+  color: #fff;
+}
+.systemLog .table-bordered th,
+.systemLog .table-bordered td {
+  border-color: #ccc;
+}
+#DataTables_Table_0_filter{display: none}

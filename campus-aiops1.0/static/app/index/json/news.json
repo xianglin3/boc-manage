@@ -1,0 +1,18 @@
+[
+  {
+    "show":"配置对比工具",
+    "url":"/office_tool/text_differ/"
+  },
+  {
+    "show":"接入资源发布(每日更新)",
+    "url":"/device_switch/device_data/"
+  },
+  {
+    "show":"运维库资产查询分析",
+    "url":"/deviceassets/"
+  },
+  {
+    "show":"新san工具",
+    "url":"/san/search_wwn/"
+  }
+]

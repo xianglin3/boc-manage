@@ -1,0 +1,46 @@
+[
+  {
+    "zone_name": "LPV_HP7C1BQMSUGW3_12_90965_8D_20140428",
+    "zoneset_name": "hsh_h_open1",
+    "members": [
+      {
+        "connection": "系统信息：LPAR:LPV_HP7C1BQMSUGW3 HMC地址:21.123.32.128 21.123.32.129 系统应用名称:ATMP-D-BQMP-ATMP网点排队管理系统 hostname:pbqmsugw3",
+        "device": "hsh-h-2c-sw2",
+        "interface": "fc1/16",
+        "ip": "11.12.68.109",
+        "wwn": "c0:50:76:07:10:4e:00:5a",
+        "updatetime": "2017/02/07 16:39"
+      },
+      {
+        "connection": "存储信息：HDS  2A-VSP90965 8D null",
+        "device": "hsh-h-2a-core2",
+        "interface": "fc1/27",
+        "ip": "11.12.68.104",
+        "wwn": "50:06:0e:80:16:63:55:74",
+        "updatetime": "2017/02/10 06:52"
+      }
+    ]
+  },
+  {
+    "zone_name": "LPV_HP7C2BQMSUGW4_12_90965_8D_20140428",
+    "zoneset_name": "hsh_h_open2",
+    "members": [
+      {
+        "connection": "系统信息：LPAR:LPV_HP7C1BQMSUGW3 HMC地址:21.123.32.128 21.123.32.129 系统应用名称:ATMP-D-BQMP-ATMP网点排队管理系统 hostname:pbqmsugw3",
+        "device": "hsh-h-2c-sw2",
+        "interface": "fc1/16",
+        "ip": "11.12.68.109",
+        "wwn": "c0:50:76:07:10:4e:00:5b",
+        "updatetime": "2017/02/07 16:39"
+      },
+      {
+        "connection": "存储信息：HDS  2A-VSP90965 8D null",
+        "device": "hsh-h-2a-core2",
+        "interface": "fc1/27",
+        "ip": "11.12.68.104",
+        "wwn": "50:06:0e:80:16:63:55:76",
+        "updatetime": "2017/02/10 06:52"
+      }
+    ]
+  }
+]

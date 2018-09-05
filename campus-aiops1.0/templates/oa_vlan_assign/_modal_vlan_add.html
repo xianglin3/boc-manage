@@ -1,0 +1,58 @@
+<!-- Modal -->
+{% verbatim myblock %}
+<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">VLAN新增</h4>
+      </div>
+      <div class="modal-body">
+        <el-form :model="ruleForm" :inline="true" :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm" size="medium ">
+          <el-form-item label="vlan号" prop="vlan_id">
+            <el-input v-model="ruleForm.vlan_id"></el-input>
+          </el-form-item>
+          <el-form-item label="vlan名" prop="vlan_name">
+            <el-input v-model="ruleForm.vlan_name"></el-input>
+          </el-form-item>
+          <el-form-item label="所属部门" prop="department_name" >
+                <el-select v-model="ruleForm.department_name" @change="change" placeholder="请选择部门">
+                  <el-option v-for="ele in departmentData" :label="ele.department_name" :key="ele.department_name" :value="ele.department_name"></el-option>
+                </el-select>
+          </el-form-item>
+            
+          <el-form-item label="地域" prop="area">
+            <el-input :disabled="true" v-model="ruleForm.area"></el-input>
+          </el-form-item>
+          <el-form-item label="用途" prop="vlan_purpose">
+            <el-input v-model="ruleForm.vlan_purpose"></el-input>
+          </el-form-item>
+          <el-form-item label="IP地址段" prop="ip_section">
+            <el-input v-model="ruleForm.ip_section" placeholder="格式：x.x.x.0"></el-input>
+          </el-form-item>
+          <el-form-item label="网关" prop="ip_gateway">
+            <el-input v-model="ruleForm.ip_gateway" placeholder="格式：x.x.x.x"></el-input>
+          </el-form-item>
+          <el-form-item label="掩码" prop="ip_mask">
+            <el-input v-model="ruleForm.ip_mask" placeholder="格式：255.255.x.0"></el-input>
+          </el-form-item>
+          <el-form-item label="备注" prop="note">
+            <el-input type="textarea" :rows="1" v-model="ruleForm.note"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
+      <div class="modal-footer">
+        <div class="row text-center">
+        <el-form>
+          <el-form-item>
+            <el-button type="success" @click="submitForm('ruleForm')">提交</el-button>
+            <el-button type="primary" @click="resetForm('ruleForm')">重置</el-button>
+            <el-button type="warning" data-dismiss="modal" data-act="cancel" @click="resetForm('ruleForm')">取消</el-button>
+          </el-form-item>
+        </el-form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endverbatim myblock %}

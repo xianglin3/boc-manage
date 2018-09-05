@@ -1,0 +1,53 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+.container-fruit .table.table-bordered {
+  border-top-width: 2px;
+  border-color: #ddd;
+}
+.container-fruit .table.table-bordered thead > tr th {
+  border-width: 2px;
+  text-align: center;
+  vertical-align: middle;
+}
+.container-fruit .table.table-bordered thead > tr th select {
+  border-radius: 4px;
+}
+.container-fruit .table.table-bordered thead > tr th.fix_width_th {
+  width: 180px;
+  color: #fff;
+  background-color: #3c8dbc;
+}
+.container-fruit .table.table-bordered td,
+.container-fruit .table.table-bordered th {
+  border-color: #ddd;
+}
+.container-fruit .table.table-bordered td.fix_width_td {
+  width: 80px;
+}
+.container-fruit .table.table-bordered .secondTitle > td {
+  text-align: center;
+  background-color: #6D5397;
+  color: #fff;
+  font-weight: bold;
+}
+.container-fruit .table.masterTable thead > tr th.fix_width_th {
+  background-color: #367fa9;
+}
+.hrLine {
+  height: 6px;
+  border-top: 2px dotted #6D5397;
+  border-bottom: 2px dotted #6D5397;
+  margin: 26px 0px;
+}

@@ -1,0 +1,113 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}端口统计{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block headcontent %}
+<!-- DataTables CSS(with Buttons)-->
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/datatables/media/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/index.css"/>
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/portlist.css"/>
+{% endblock %}
+{% block pagecontent %}
+    {% include "campus_aiops/navBase.html"%}
+    <div id="interfaces_echart" class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <!-- echarts-->
+                <div id="interfaces_gram" style="width: 1000px;height:250px; ">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="interfaces_echart1" class="col-sm-3">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <!-- echarts-->
+                <div id="interfaces_gram1" style="width: 400px;height:250px; ">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="interfaces_echart2" class="col-sm-3">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <!-- echarts-->
+                <div id="interfaces_gram2" style="width: 400px;height:250px; ">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="interfaces_echart3" class="col-sm-3">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <!-- echarts-->
+                <div id="interfaces_gram3" style="width: 400px;height:250px; ">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="interfaces_echart4" class="col-sm-3">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <!-- echarts-->
+                <div id="interfaces_gram4" style="width: 400px;height:250px; ">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="interfaces_echart5" class="col-sm-3">
+        <div class="panel panel-primary">
+
+            <div class="panel-body">
+                <!-- echarts-->
+                <div id="interfaces_gram5" style="width: 400px;height:250px; ">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="interfaces_echart6" class="col-sm-3">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <!-- echarts-->
+                <div id="interfaces_gram6" style="width: 400px;height:250px; ">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="interfaces_echart7" class="col-sm-3">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <!-- echarts-->
+                <div id="interfaces_gram7" style="width: 400px;height:250px; ">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="interfaces_echart8" class="col-sm-3">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <!-- echarts-->
+                <div id="interfaces_gram8" style="width: 400px;height:250px; ">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="preloader"><i class="fa fa-spinner fa-spin fa-5x"></i></div>
+{% endblock %}
+{% block bodycontent %}
+    <script src="/static/jquery_datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/echarts.min.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/navBase.js"></script>
+
+    <script type="text/javascript" src="/static/app/campus_aiops/js/campus_interfaces_usage_info.js"></script>
+
+{% endblock %}

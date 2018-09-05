@@ -1,0 +1,20 @@
+[
+  {"wwn":"10:12:L12?:12:L1","ip":"1.1.1.1","device":"存储1","interface":"8080","connection":"无存储设备信息"},
+  {"wwn":"10:12:L12?:12:L2","ip":"1.1.1.2","device":"存储2","interface":"8080","connection":"无存储设备信2"},
+  {"wwn":"10:12:L12?:12:L3","ip":"1.1.1.3","device":"存储3","interface":"8080","connection":"无存储设备信3"},
+  {"wwn":"10:12:L12?:12:L4","ip":"1.1.1.4","device":"存储4","interface":"8080","connection":"无存储设备信4"},
+  {"wwn":"10:12:L12?:12:L5","ip":"1.1.1.5","device":"存储5","interface":"8080","connection":"无存储设备信5"},
+  {"wwn":"10:12:L12?:12:L6","ip":"1.1.1.6","device":"存储6","interface":"8080","connection":"无存储设备信6"},
+  {"wwn":"10:12:L12?:12:L7","ip":"1.1.1.7","device":"存储7","interface":"8080","connection":"无存储设备信7"},
+  {"wwn":"10:12:L12?:12:L8","ip":"1.1.1.8","device":"存储8","interface":"8080","connection":"无存储设备信8"},
+  {"wwn":"10:12:L12?:12:L9","ip":"1.1.1.9","device":"存储9","interface":"8080","connection":"无存储设备信9"},
+  {"wwn":"10:12:L12?:12:L10","ip":"1.1.1.10","device":"存储10","interface":"8080","connection":"无存储设备信10"},
+  {"wwn":"10:12:L12?:12:L11","ip":"1.1.1.11","device":"存储11","interface":"8080","connection":"无存储设备信11"},
+  {"wwn":"10:12:L12?:12:L12","ip":"1.1.1.12","device":"存储12","interface":"8080","connection":"无存储设备信12"},
+  {"wwn":"10:12:L12?:12:L13","ip":"1.1.1.13","device":"存储13","interface":"8080","connection":"无存储设备信13"},
+  {"wwn":"10:12:L12?:12:L14","ip":"1.1.1.14","device":"存储14","interface":"8080","connection":"无存储设备信14"},
+  {"wwn":"10:12:L12?:12:L15","ip":"1.1.1.15","device":"存储15","interface":"8080","connection":"无存储设备信15"},
+  {"wwn":"10:12:L12?:12:L16","ip":"1.1.1.16","device":"存储16","interface":"8080","connection":"无存储设备信16"},
+  {"wwn":"10:12:L12?:12:L17","ip":"1.1.1.17","device":"存储17","interface":"8080","connection":"无存储设备信17"},
+  {"wwn":"10:12:L12?:12:L18","ip":"1.1.1.18","device":"存储18","interface":"8080","connection":"无存储设备信18"}
+]

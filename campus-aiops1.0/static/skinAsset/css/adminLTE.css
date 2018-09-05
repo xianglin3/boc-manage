@@ -1,0 +1,31 @@
+/*blue style*/
+.skin-blue .main-header .logo:hover,.skin-blue .main-header .logo{
+    background-color:transparent;
+}
+.skin-blue .sidebar-menu > li.header{
+    color:#fff;
+    background-color:transparent;
+}
+.skin-blue .sidebar-menu > li > .treeview-menu{
+    background:transparent;
+}
+.skin-blue .sidebar-menu > li:hover > a, .skin-blue .sidebar-menu > li.active > a{
+    background:transparent;
+}
+.main-sidebar, .left-side{
+   /* opacity:0.5*/
+}
+.skin-blue .sidebar a{
+    color:#fff;
+}
+.main-sidebar, .left-side a,.main-sidebar, .left-side a>span{
+    color:#fff;
+}
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side{
+    /*background-color:#000;*/
+    background-image:url('../img/skin1.jpg');
+    background-size:contain;
+}
+.skin-blue .wrapper, .skin-blue .main-sidebar .sidebar{
+    background:rgba(255,255,255,0.3);
+}

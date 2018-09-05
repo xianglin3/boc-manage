@@ -1,0 +1,163 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}骨干网检测{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block headcontent %}
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/backbone.css"/>
+<style>
+
+</style>
+{% endblock %}
+{% block pagecontent %}
+    {% verbatim myblock %}
+    <div class="backbone" id="backbone" v-block>
+        <h4>骨干网一键passive</h4>
+        <div>
+            <el-radio class="radio" v-model="radio" label="1" @change="tabRadio">1号网</el-radio>
+            <el-radio class="radio" v-model="radio" label="2" @change="tabRadio">2号网</el-radio>
+        </div>
+        <el-row style="padding-top:20px;">
+            <el-col :span="5">
+                <el-autocomplete
+                    class="inline-input"
+                    v-model="city"
+                    :fetch-suggestions="querySearch"
+                    placeholder="请输入城市"
+                    @select="handleSelect"
+                ></el-autocomplete>
+            </el-col>
+            <el-col :span="4">
+                <el-button type="text" @click="configSet">配置指导</el-button>
+            </el-col>
+            <el-col :span="24" style="padding-top:20px;">
+                <el-button type="primary" size="small" @click="check('passiveB')">passive前检查</el-button>
+                <el-button type="primary" size="small" style="margin-left:20px;" @click="check('opera')">passive操作指南</el-button>
+                <el-button type="primary" size="small" style="margin-left:20px;" @click="check('reCheck')">恢复前检查</el-button>
+                <el-button type="primary" size="small" style="margin-left:20px;" @click="check('rePassive')">恢复操作指南</el-button>
+            </el-col>
+        </el-row>
+        <el-row style="padding-top:30px;">
+            <el-table
+                :data="tableShow"
+                border
+                style="width: 100%">
+                <el-table-column
+                    prop="name"
+                    label="园区"></el-table-column>
+                <el-table-column
+                    prop="branch"
+                    label="branch"></el-table-column>
+                <el-table-column
+                    prop="dcdevice"
+                    label="dcdevice"></el-table-column>
+                <el-table-column
+                    prop="dcport"
+                    label="dcport"></el-table-column>
+                <el-table-column
+                    prop="dcip"
+                    label="dcip"></el-table-column>
+                <el-table-column
+                    prop="brport"
+                    label="brport"></el-table-column>
+                <el-table-column
+                    prop="brip"
+                    label="brip"></el-table-column>
+                <el-table-column
+                    prop="brdevice"
+                    label="brdevice"></el-table-column>
+                <el-table-column
+                    prop="as"
+                    label="as"></el-table-column>
+                <el-table-column
+                    label="状态"
+                    align="center"
+                    width="70">
+                    <template scope="scope">
+                        <i v-if="scope.row.xianlu_status" class="icon" :class="scope.row.xianlu_status == 'ok'?'iconOk el-icon-circle-check':'iconNo el-icon-circle-close'"></i>
+                        <span v-else>未检查</span></template>
+                </el-table-column>
+                <el-table-column label="操作" width="80" align="center">
+                    <template scope="scope">
+                        <el-button
+                        :disabled="!scope.row.xianlu_status"
+                        size="small"
+                        @click="detail(scope.$index, scope.row)" type="text">详情</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <el-form :inline="true" :model="formInput" class="demo-form-inline" style="float:right;padding-top:15px;" label-width="30">
+                <el-form-item label="包数">
+                    <el-input v-model="formInput.value1" max="10" size="mini" placeholder="参数1"></el-input>
+                </el-form-item>
+                <el-form-item label="包大小">
+                    <el-input v-model="formInput.value2" size="mini" placeholder="参数2"></el-input>
+                </el-form-item>
+                <el-form-item label="丢包数阈值">
+                    <el-input v-model="formInput.value3" size="mini" placeholder="参数3"></el-input>
+                </el-form-item>
+            </el-form>
+        </el-row>
+        <el-dialog :title="dialogTitle" :visible.sync="dialogVisible">
+            <div v-if="isDialogTable">
+                <el-card class="box-card" style="margin-bottom:20px;">
+                  <div slot="header" class="clearfix">
+                    <span>线路一</span>
+                  </div>
+                  <div>
+                    <el-table
+                        :data="dialogData1"
+                        style="width: 100%">
+                        <el-table-column
+                            prop="cmd"
+                            label="cmd"></el-table-column>
+                        <el-table-column
+                            prop="desc"
+                            label="desc"></el-table-column>
+                        <el-table-column
+                            prop="loss_count"
+                            label="loss_count"></el-table-column>
+                        <el-table-column
+                            prop="panglu_cmd"
+                            label="panglu_cmd"></el-table-column>
+                        <el-table-column
+                            prop="huifu_cmd"
+                            label="huifu_cmd"></el-table-column>
+                    </el-table>
+                  </div>
+                </el-card>
+                <el-card class="box-card">
+                  <div slot="header" class="clearfix">
+                    <span>线路二</span>
+                  </div>
+                  <div>
+                    <el-table
+                        :data="dialogData2"
+                        style="width: 100%">
+                        <el-table-column
+                            prop="cmd"
+                            label="cmd"></el-table-column>
+                        <el-table-column
+                            prop="desc"
+                            label="desc"></el-table-column>
+                        <el-table-column
+                            prop="loss_count"
+                            label="loss_count"></el-table-column>
+                        <el-table-column
+                            prop="panglu_cmd"
+                            label="panglu_cmd"></el-table-column>
+                        <el-table-column
+                            prop="huifu_cmd"
+                            label="huifu_cmd"></el-table-column>
+                    </el-table>
+                  </div>
+                </el-card>
+            </div>
+            <div v-else>
+                <span>配置指导内容</span>
+            </div>
+        </el-dialog>
+    </div>
+    {% endverbatim myblock %}
+{% endblock %}
+{% block bodycontent %}
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/backbone.js"></script>
+{% endblock %}

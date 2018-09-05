@@ -1,0 +1,27 @@
+
+
+.anchor2{
+    color: #000;
+    margin-top:-100px;
+    padding-top: 100px;
+}/*# sourceMappingURL=bootstrap.min.css.map */
+a.anchor2:hover{
+    text-decoration: none;
+    color: #000;
+}
+.table-striped > tbody > tr.zone_start_line{
+    background-color: #64C0A5;
+}
+.doublesidebar{
+    padding:10px;
+    float: left;
+}
+.subsidebar{
+    margin-left: 5%;
+    float: left;
+    width: 50%;
+}
+.subsidebar-right{
+    float: left;
+    margin-left: 20px;
+}

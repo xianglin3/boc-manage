@@ -1,0 +1,142 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 1060;
+}
+div.fluid-container div.link_list a {
+  padding: 2px 20px;
+  margin-right: 10px;
+}
+div.fluid-container div.link_list a.active {
+  background-color: #00a65a;
+  border-color: #008d4c;
+}
+div.fluid-container div.main_page div.page {
+  display: none;
+}
+div.fluid-container div.main_page div.page div.user_info {
+  margin-bottom: 8px;
+}
+div.fluid-container div.main_page div.page div.user_info > div {
+  margin-top: 8px;
+}
+div.fluid-container div.main_page div.page table.table thead {
+  background-color: #3c8dbc;
+  color: #fff;
+}
+div.fluid-container div.main_page div.page table.table tbody tr.selected td[data-field=opt] button.btn {
+  background-color: #E4393C;
+  color: #fff;
+}
+div.fluid-container div.main_page div.page table.table tr td,
+div.fluid-container div.main_page div.page table.table tr th {
+  padding: 4px;
+}
+div.fluid-container div.main_page div.page table.table tr td input.mod_input,
+div.fluid-container div.main_page div.page table.table tr th input.mod_input {
+  width: 100px;
+}
+
+div.fluid-container div.main_page div.page table.table tr td input.mod_input.datatime_input {
+  width: 160px;
+}
+
+div.fluid-container div.main_page div.page table.table tr td select.mod_input,
+div.fluid-container div.main_page div.page table.table tr th select.mod_input {
+  width: 100px;
+  height: 26px;
+}
+div.fluid-container div.main_page div.page table.table tr td[data-field=opt] {
+  text-align: center;
+}
+div.fluid-container div.main_page div.page table.table tr td[data-field=opt] button.btn {
+  padding: 0px 6px;
+  background-color: #7AAE71;
+  color: #fff;
+  margin: 0px 4px;
+}
+div.fluid-container div.main_page div.page table.table tr td[data-field=opt] button.btn[data-act=del] {
+  background-color: #d15b47;
+}
+div.fluid-container div.main_page div.page table.table tr td[data-field=opt] button.btn[data-act=mod] {
+  background-color: #6fb3e0;
+}
+div.fluid-container div.main_page div.page table.table tr td[data-field=opt] button.btn[data-act=save] {
+  background-color: #87b87f;
+}
+div.fluid-container div.main_page div.page table.table tr td[data-field=opt] button.btn[data-act=drop] {
+  background-color: #f39c12;
+}
+div.fluid-container div.main_page div.page a.buttons-excel {
+  padding: 2px 12px;
+}
+div.fluid-container div.main_page div.page #table_select tbody tr {
+  background-color: #fefefe;
+}
+div.fluid-container div.main_page div.page #table_select tbody tr.required {
+  background-color: #FFFAE3;
+}
+div.fluid-container div.main_page div.page.active {
+  display: block;
+}
+.item_human_course {
+  display: inline-block;
+  padding: 1px 6px;
+  border: 1px solid #fa9f1f;
+  margin: 2px 8px;
+  background-color: #f39c12;
+  border-radius: 4px;
+  color: #fff;
+}
+div.record_page {
+  margin-top: 10px;
+}
+div.record_page table.table thead > tr {
+  background-color: #3c8dbc;
+  color: #fff;
+}
+div.record_page table.table thead > tr > th:first-child {
+  min-width: 104px;
+  vertical-align: middle;
+  text-align: center;
+}
+div.record_page table.table tbody tr td:first-child {
+  width: 104px;
+  vertical-align: middle;
+  text-align: center;
+}
+div.record_page table.table tbody tr td span.human_item {
+  display: inline-block;
+  padding: 1px 6px;
+  border: 1px solid #fa9f1f;
+  margin: 2px 8px;
+  background-color: #f39c12;
+  border-radius: 4px;
+  color: #fff;
+}
+div.course_opt {
+  margin-top: 10px;
+}
+div.course_opt button.btn {
+  padding: 2px 20px;
+}
+div.table-responsive {
+  margin-top: 4px;
+}
+div.table-responsive div.dataTables_length select {
+  border-radius: 2px;
+  outline: none;
+}
+div.table-responsive div.dataTables_filter input {
+  border-radius: 4px;
+  outline: none;
+}

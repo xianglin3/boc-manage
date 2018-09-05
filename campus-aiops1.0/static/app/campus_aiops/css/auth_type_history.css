@@ -1,0 +1,136 @@
+/*nav style*/
+section.content div.box div.box-header {
+  display: none;
+}
+/*loading style*/
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 9999;
+}
+/*auth-type-history style*/
+.auth-type-history .pointer{
+    cursor:pointer;
+}
+.auth-type-history .file {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.auth-type-history .file input {
+  position: absolute;
+  font-size: 100px;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.auth-type-history .show-filed {
+  float: left;
+  margin-right: 4px;
+}
+
+.form-control{
+	border-radius:4px;
+}
+
+.auth-type-history #table_id_example .buttons{
+	text-align:center;
+}
+.auth-type-history .dropdown-menu li{
+	padding-left:5px;
+}
+.auth-type-history .modal-body label{
+  height:37px;
+}
+.auth-type-history .el-select .el-input__inner{
+  cursor: pointer;
+  padding-right:10px;
+}
+.auth-type-history .block{
+  display:inline-block;
+}
+/*详情页样式*/
+.auth-type-history .see .el-dialog--small{
+	width:78%;
+}
+.auth-type-history .see .el-dialog{
+	background-color: #f5f5f5;
+}
+.auth-type-history .see .el-dialog__header{
+  margin:20px 20px 0;
+}
+.auth-type-history .see .el-dialog__body{
+  position:relative;
+  margin:20px 20px 0;
+}
+.auth-type-history .see .modal-body ul{
+  border-right:1px solid #ccc;
+  border-bottom:1px solid #ccc;
+}
+.auth-type-history .see .modal-body li{
+  position: relative;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  border: 1px solid #ccc;
+  border-right:none;
+  line-height: 32px;
+	display:flex;
+	display:-webkit-flex;
+}
+.auth-type-history .see .modal-body .btnTab{
+  position:absolute;
+  top:-36px;
+  left:0;
+}
+.auth-type-history .see .modal-body .btnTab span{
+  display:inline-block; 
+  line-height:28px;
+  width:106px;
+  text-align:center;
+  border-radius:2px;
+  margin-right:10px;
+  cursor:pointer;
+}
+.auth-type-history .see .modal-body .btnTab .active{
+  background-color:#fff;
+  color:red;
+}
+.auth-type-history .see .modal-body .btnTab .active i{
+  position:absolute;
+  display:block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 5px 0 5px;
+  border-color: #fff transparent transparent transparent;
+}
+.auth-type-history .see .modal-body li span{
+  padding-right:1px;
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+.auth-type-history .el-select .el-input__inner{
+	cursor: pointer;
+	padding-right:10px;
+}
+.auth-type-history .el-select .el-input .el-input__icon{
+    -webkit-transform: translateY(-50%) rotateZ(180deg);
+}
+.auth-type-history .el-select .el-input .el-input__icon.is-reverse {
+    -webkit-transform: translateY(-50%);
+}

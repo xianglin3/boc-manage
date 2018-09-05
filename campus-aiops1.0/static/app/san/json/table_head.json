@@ -1,0 +1,10 @@
+[
+  {"field":"wwn","CH":"WWN"},
+  {"field":"ip","CH":"IP"},
+  {"field":"device","CH":"设备"},
+  {"field":"interface","CH":"端口"},
+  {"field":"interface_description_string","CH":"端口描述"},
+  {"field":"connection","CH":"系统 / 存储设备信息"},
+  {"field":"updatetime","CH":"更新时间"},
+  {"field":"opt","CH":"操作"}
+]

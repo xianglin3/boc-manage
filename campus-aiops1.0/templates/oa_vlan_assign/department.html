@@ -1,0 +1,27 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}局域园区VLAN规划及IP分配{% endblock %}
+{% block pageheader %}园区部门管理{% endblock %}
+{% block headcontent %}
+<!-- DataTables CSS(with Buttons)-->
+    <link href="/static/jquery_datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/app/oa_vlan_assign/css/oa_vlan_assign_manage.css"/>
+{% endblock %}
+
+{% block pagecontent %}
+    <div class="page_parent">
+        {% include 'oa_vlan_assign/_department_manage.html' %}
+        {% include 'oa_vlan_assign/_new_department.html' %}
+        {% include 'oa_vlan_assign/_edit_department.html' %}
+    </div>
+<!-- _modal_element.html-->
+{% include 'oa_vlan_assign/_modal_element.html' %}
+<div class="preloader hidden"><i class="fa fa-spinner fa-spin fa-5x"></i></div>
+
+{% endblock %}
+
+{% block bodycontent %}
+    <!-- DataTables JavaScript(with Buttons)-->
+    <script src="/static/jquery_datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/oa_vlan_assign/js/jquery.form.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/oa_vlan_assign/js/department_manage.js"></script> {# 3 #}
+{% endblock %}

@@ -1,0 +1,105 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+div.box-body div.row div.form-inline {
+  margin-bottom: 8px;
+}
+div.box-body div.row div.form-inline label {
+  width: 70px;
+  text-align: right;
+}
+div.box-body div.row div.form-inline input.form-control {
+  width: 250px;
+  border-radius: 4px;
+  height: 28px;
+  padding: 0px 10px;
+}
+div.box-body div.row div.form-inline div.input_select {
+  margin-left: 74px;
+  position: relative;
+  display: none;
+}
+div.box-body div.row div.form-inline div.input_select ul.select_menu {
+  width: 100%;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 15;
+  max-height: 300px;
+  overflow-y: auto;
+}
+div.box-body div.row div.form-inline div.input_select ul.select_menu li {
+  cursor: pointer;
+  padding: 4px 10px;
+}
+div.box-body div.row div.form-inline div.input_select ul.select_menu li:hover {
+  background-color: #ffa;
+}
+div.box-body div.row div.form-inline div.btn-group {
+  margin-left: 73px;
+}
+div.box-body div.table_container table.table thead {
+  background-color: #3c8dbc;
+  color: #fff;
+}
+div.box-body div.table_container table.table th,
+div.box-body div.table_container table.table td {
+  padding: 4px 8px;
+}
+div.box-body div.table_container div.dataTables_filter {
+  display: none;
+}
+div.box-body div.container-fluid ul.nav-tabs {
+  margin-bottom: 10px;
+}
+div.box-body div.container-fluid div.tab-content > div.tab-pane > div.btn-group {
+  z-index: 10;
+}
+div.box-body div.container-fluid #pie_statistics {
+  height: 600px;
+  margin-top: -30px;
+}
+div.box-body div.container-fluid #bar_statistics {
+  height: 600px;
+  margin-top: 10px;
+}
+div.box-body div.tab-pane {
+  position: relative;
+}
+div.box-body div.tab-pane div.dialog_self {
+  position: absolute;
+  top: 54px;
+  left: 0px;
+  background-color: #fff;
+  z-index: 11;
+  width: 240px;
+  height: 265px;
+  padding: 6px;
+  border: 1px solid #00acd6;
+  overflow-y: auto;
+}
+div.box-body div.tab-pane div.dialog_self button.btn {
+  margin-left: 4px;
+  margin-bottom: 4px;
+}
+div.box-body div.tab-pane div.dialog_self button.btn.active {
+  background-color: #00c0ef;
+  border-color: #00acd6;
+  color: #fff;
+}
+div.box-body div.tab-pane div.dialog_self.second {
+  top: 326px;
+}

@@ -1,0 +1,59 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 3;
+}
+div.table select.form-control {
+  border-radius: 4px;
+}
+div.table #wwn_search thead tr {
+  background-color: #5cb85c;
+}
+div.table #wwn_search thead tr th {
+  color: #fff;
+}
+div.table #wwn_search tbody tr td {
+  font-size: 12px;
+}
+div.table #wwn_search tbody tr td[data-field=iskey] {
+  text-align: center;
+}
+div.table #wwn_search tbody tr td[data-field=iskey] button {
+  padding: 0px 2px;
+}
+div.table #wwn_search tbody tr[data-child] {
+  background-color: #fff;
+}
+div.table #wwn_search tbody tr[data-parent] {
+  cursor: pointer;
+  background-color: #ededed;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf6fd), to(#d5e8f3));
+  /*background-image: -webkit-linear-gradient(top, #fefefe, #dddddd);*/
+  /*background-image: -moz-linear-gradient(top, #fefefe, #dddddd);*/
+  /*background-image: -ms-linear-gradient(top, #fefefe, #dddddd);*/
+  /*background-image: -o-linear-gradient(top, #fefefe, #dddddd);*/
+  /*background-image: linear-gradient(to bottom, #fefefe, #dddddd);*/
+}
+form.form-inline {
+  margin: 4px 0px 8px;
+}
+form.form-inline div.input-group-addon {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+form.form-inline textarea.form-control {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+form.form-inline button.search_btn {
+  padding: 6px 20px;
+}

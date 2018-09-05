@@ -1,0 +1,96 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}参考文档与模板下载{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block headcontent %}
+    <link href="/static/jquery_datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/oa_vlan_assign_manage.css"/>
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/index.css"/>
+{% endblock %}
+{% block pagecontent %}
+    {% include "campus_aiops/navBase.html"%}
+    <div class="page" id="oa_vlan_assign_manage">
+
+        <div id="nw_chart" class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4><i class="glyphicon glyphicon-globe"></i> 批量导入信息模板下载</h4>
+                </div>
+                <div class="panel-body">
+                    <p><strong>数据铺底操作说明:</strong></p>
+                    <p><strong>进行数据铺底时，按照“园区设备”——“VLAN”——“IP”的顺序依次批量导入信息。导入模板及铺底顺序如下所示：</strong></p>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            1. 园区设备批量导入模板下载：<a href="http://22.1.111.29/softwares/%C4%A3%B0%E5%CF%C2%D4%D8/%D4%B0%C7%F8%B5%D8%D6%B7%B9%DC%C0%ED%B9%E6%B7%B6/campus.xlsx" target="_blank" class="btn btn-primary">园区设备批量导入模板（campus）</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            2. VLAN信息批量导入模板下载：<a href="http://22.1.111.29/softwares/%C4%A3%B0%E5%CF%C2%D4%D8/%D4%B0%C7%F8%B5%D8%D6%B7%B9%DC%C0%ED%B9%E6%B7%B6/vlan%D0%C5%CF%A2%B5%BC%C8%EB%C4%A3%B0%E5.xlsx" target="_blank" class="btn btn-primary">VLAN信息批量导入模板</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            3. IP分配批量导入模板下载：<a href="http://22.1.111.29/softwares/%C4%A3%B0%E5%CF%C2%D4%D8/%D4%B0%C7%F8%B5%D8%D6%B7%B9%DC%C0%ED%B9%E6%B7%B6/IP%B7%D6%C5%E4%C5%FA%C1%BF%B5%BC%C8%EB%C4%A3%B0%E5.xlsx" target="_blank" class="btn btn-primary">IP分配批量导入模板</a>
+                        </div>
+                    </div>
+{#                    <div class="row">#}
+{#                        <div class="col-lg-12">#}
+{#                            部门信息批量导入模板下载：<a href="http://22.1.111.29:8090/%C4%A3%B0%E5%CF%C2%D4%D8/%D4%B0%C7%F8%B5%D8%D6%B7%B9%DC%C0%ED%B9%E6%B7%B6/%B2%BF%C3%C5%D0%C5%CF%A2%C5%FA%C1%BF%B5%BC%C8%EB%C4%A3%B0%E5.xlsx" target="_blank" class="btn btn-primary">部门信息批量导入模板</a>#}
+{#                        </div>#}
+{#                    </div>#}
+
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4><i class="glyphicon glyphicon-globe"></i> 参考文档下载</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            下载：<a href="http://22.1.111.29/softwares/%C4%A3%B0%E5%CF%C2%D4%D8/%D4%B0%C7%F8%B5%D8%D6%B7%B9%DC%C0%ED%B9%E6%B7%B6/%D6%D0%B9%FA%D2%F8%D0%D0%B8%F7%D4%B0%C7%F8IP%B5%D8%D6%B7%BC%B0VLAN%B9%E6%BB%AE.xlsx" target="_blank" class="btn btn-primary">中国银行各园区IP地址及VLAN规划</a>
+                        </div>
+                        <div class="col-lg-12">
+                            下载：<a href="http://22.1.111.29/softwares/%C4%A3%B0%E5%CF%C2%D4%D8/%D4%B0%C7%F8%B5%D8%D6%B7%B9%DC%C0%ED%B9%E6%B7%B6/%D7%BC%C8%EB%C5%E4%D6%C3%C4%A3%B0%E5.xlsx" target="_blank" class="btn btn-primary">准入配置模板</a>
+                        </div>
+                        <div class="col-lg-12">
+                            下载：<a href="http://22.1.111.29/softwares/%C4%A3%B0%E5%CF%C2%D4%D8/%D4%B0%C7%F8%B5%D8%D6%B7%B9%DC%C0%ED%B9%E6%B7%B6/%B6%CB%BF%DA%C5%E4%D6%C3%CF%C2%B7%A2%C4%A3%B0%E5.xlsx" target="_blank" class="btn btn-primary">端口配置下发模板</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <ul class="list-group" style="display: flex;border:none;">
+                    <li class="list-group-item" style="border:none;font-size: 16px;">友情链接：</li>
+                    <li class="list-group-item" style="border:none;font-size: 16px;">
+                        <a href="http://22.122.51.80:8080/imc/" style="color:rgb(0, 114, 198)">同城EAD服务器</a>
+                    </li>
+                    <li class="list-group-item" style="border:none;font-size: 16px;">
+                        <a href="https://22.122.51.68/ui/" style="color:rgb(0, 114, 198)">同城DHCP服务器</a>
+                    </li>
+                    <li class="list-group-item" style="border:none;font-size: 16px;">
+                        <a href="http://22.1.84.80:8080/imc/" style="color:rgb(0, 114, 198)">西单EAD服务器</a>
+                    </li>
+                    <li class="list-group-item" style="border:none;font-size: 16px;">
+                        <a href="https://22.1.84.68/ui/" style="color:rgb(0, 114, 198)">西单DHCP服务器</a>
+                    </li>
+                    <li class="list-group-item" style="border:none;font-size: 16px;">
+                        <a href="http://22.1.111.29/cli_realtime/" style="color:rgb(0, 114, 198)">命令行实时采集</a>
+                    </li>
+                    <li class="list-group-item" style="border:none;font-size: 16px;">
+                        <a href="http://22.1.111.29/CMCS_Tool/excel_push/" style="color:rgb(0, 114, 198)">CMCS批量任务创建</a>
+                    </li>
+                    <li class="list-group-item" style="border:none;font-size: 16px;">
+                        <a href="https://22.122.32.128:8001/nccmweb/#initial" style="color:rgb(0, 114, 198)">CMCS管理平台</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block bodycontent %}
+    <script src="/static/jquery_datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/jquery.form.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/navBase.js"></script>
+{% endblock %}

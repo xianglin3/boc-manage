@@ -1,0 +1,152 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+.rTop {
+  z-index: 100;
+}
+section.content {
+  padding: 0px;
+  min-height: 500px;
+  height: 100%;
+}
+section.content div.box {
+  border-top: none;
+  height: 100%;
+  margin-bottom: 0px;
+}
+section.content div.box div.box-body {
+  padding: 0px;
+  height: calc(100% - 41px);
+}
+section.content div.box div.box-body .page_tab ul.nav {
+  background-color: #3c8dbc;
+  padding-left: 30px;
+}
+section.content div.box div.box-body .page_tab ul.nav li {
+  margin-left: 0px;
+}
+section.content div.box div.box-body .page_tab ul.nav li a {
+  padding: 5px 15px;
+  color: #fff;
+}
+section.content div.box div.box-body .page_tab ul.nav li a:hover {
+  color: #666;
+}
+section.content div.box div.box-body .page_tab ul.nav li.active a {
+  background-color: #fff;
+  border-color: #fff;
+  color: #3c8dbc;
+}
+section.content div.box div.box-body .page_tab ul.nav li.imageTab.active > a {
+  background-color: #eee;
+  border-color: #eee;
+}
+section.content div.box div.box-body .page_tab ul.nav li.search {
+  float: right;
+  margin: 3px 20px 3px 0px;
+  position: relative;
+}
+section.content div.box div.box-body .page_tab ul.nav li.search input.input {
+  padding-right: 20px;
+}
+section.content div.box div.box-body .page_tab ul.nav li.search span {
+  cursor: pointer;
+  color: transparent;
+  border-color: transparent;
+  position: absolute;
+  top: 4px;
+  right: 48px;
+}
+section.content div.box div.box-body .page_tab ul.nav li.search span.active {
+  border-radius: 50%;
+  border: 2px solid #f00;
+  color: #f00;
+}
+section.content div.box div.box-body .page_content {
+  position: relative;
+  height: calc(100% - 33px);
+}
+section.content div.box div.box-body .page_content .page {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+section.content div.box div.box-body .page_content .page div.row {
+  z-index: 2;
+}
+section.content div.box div.box-body .page_content .page div.row > div {
+  margin-bottom: 10px;
+}
+section.content div.box div.box-body .page_content .page div.row div.pageNum ul.list-inline {
+  padding-top: 10px;
+}
+section.content div.box div.box-body .page_content .page div.row div.pageNum ul.list-inline li select.form-control {
+  height: 28px;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+section.content div.box div.box-body .page_content .page div.row div.pageNum ul.list-inline li button.btn {
+  padding: 3px 6px;
+}
+section.content div.box div.box-body .page_content .page div.row div.col-lg-2.message {
+  height: 30px;
+  padding-top: 10px;
+}
+section.content div.box div.box-body .page_content .page ul.list-inline {
+  margin-bottom: 0px;
+  padding: 14px 20px 0px;
+}
+section.content div.box div.box-body .page_content .page ul.list-inline li {
+  margin-left: 10px;
+}
+section.content div.box div.box-body .page_content .page ul.list-inline li a {
+  padding: 3px 6px;
+  border-radius: 4px;
+  background-color: #ddd;
+  color: #444 ;
+  font-size: 14px;
+}
+section.content div.box div.box-body .page_content .page ul.list-inline li.active a {
+  background-color: #3c8dbc;
+  color: #fff;
+}
+section.content div.box div.box-body .page_content .page div.table-responsive {
+  height: calc(100% - 50px);
+  overflow-y: auto;
+}
+div.box-body div.modal-dialog div.modal-content {
+  border-radius: 6px;
+}
+div.box-body div.modal-dialog div.modal-content div.modal-header {
+  border-bottom-color: #ddd;
+}
+div.box-body div.modal-dialog div.modal-content div.modal-header .modal-title {
+  font-weight: bold;
+}
+div.box-body div.modal-dialog div.modal-content div.modal-body {
+  margin: 0px;
+  padding: 0px;
+}
+div.box-body div.modal-dialog div.modal-content div.modal-body .canvasContainer {
+  background-color: #e5e5e5;
+  overflow-y: auto;
+}
+footer.main-footer {
+  padding: 6px;
+}

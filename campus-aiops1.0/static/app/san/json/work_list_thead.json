@@ -1,0 +1,30 @@
+{
+  "thead":[
+    {"data":"name","CH":"工单名"},
+    {"data":"number","CH":"序列号"},
+    {"data":"remedy_number","CH":"remedy号"},
+    {"data":"applicant","CH":"申请人"},
+    {"data":"push_time","CH":"下发时间"},
+    {"data":"opt","CH":"操作"}
+  ],
+  "lang":{
+    "sProcessing": "处理中...",
+    "sLengthMenu": "每页显示 _MENU_ 条记录",
+    "sZeroRecords": "没有匹配结果",
+    "sInfo": "显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 条",
+    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+    "sInfoPostFix": "",
+    "sSearch": "全文查找:",
+    "sUrl": "",
+    "sEmptyTable": "未搜索任何数据...",
+    "sLoadingRecords": "载入中...",
+    "sInfoThousands": ",",
+    "oPaginate": {
+      "sFirst": "首页",
+      "sPrevious": "上页",
+      "sNext": "下页",
+      "sLast": "末页"
+    }
+  }
+}

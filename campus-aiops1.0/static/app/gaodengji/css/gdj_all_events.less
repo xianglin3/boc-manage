@@ -1,0 +1,54 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left:50%;
+  margin-left: -80px;
+  width:160px;
+  height:160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  text-align: center;
+  z-index: 1060;
+}
+
+div.dataTables_wrapper{
+  margin-top: 10px;
+  &>div.dt-buttons{
+    margin-left: 8px;
+    top:-2px;
+    &>a.dt-button{
+      padding: 4px 22px;
+      background: #00c0ef;
+      border-color: #00acd6;
+      color: #fff;
+      &:hover{
+        background: #00acd6;
+      }
+    }
+  }
+  .table{
+    thead{
+      background-color: #3c8dbc;
+      color: #fff;
+    }
+  }
+  .table tr td,.table tr th{
+    padding: 4px 6px;
+  }
+}
+#show_filed{
+  float: left;
+  margin: -4px 0px 0px 24px;
+}
+#myModal{
+  .modal-content{
+    border-radius: 4px;
+    output{
+      padding-bottom: 7px;
+      padding-top: 2px;
+    }
+  }
+}
+

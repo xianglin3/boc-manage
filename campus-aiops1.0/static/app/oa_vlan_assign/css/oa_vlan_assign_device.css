@@ -1,0 +1,23 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 1060;
+}
+.el-scrollbar .el-select-dropdown__wrap{
+   max-height: none;
+}
+#oa_vlan_assign_device .el-select .el-input .el-input__icon{
+    -webkit-transform: translateY(-50%) rotateZ(180deg);
+}
+#oa_vlan_assign_device .el-select .el-input .el-input__icon.is-reverse {
+    -webkit-transform: translateY(-50%);
+}

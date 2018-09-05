@@ -1,0 +1,26 @@
+{
+  "thead":[
+    {"data":"number","CH":"事件编号","show":true,"export":true},
+    {"data":"state","CH":"事件状态","show":false,"export":true},
+    {"data":"bus_type","CH":"运维组","show":true,"export":true},
+    {"data":"user","CH":"操作者","show":false,"export":true},
+    {"data":"node","CH":"设备IP","show":true,"export":true},
+    {"data":"dev_name","CH":"设备名称","show":false,"export":true},
+    {"data":"severity","CH":"事件级别","show":false,"export":true},
+    {"data":"alertgroup","CH":"事件类型","show":false,"export":true},
+    {"data":"summary","CH":"事件描述","show":true,"export":true},
+    {"data":"lastoccurrence","CH":"最后发生时间","show":true,"export":true},
+    {"data":"firstoccurrence","CH":"最早发生时间","show":true,"export":true},
+    {"data":"tally","CH":"次数","show":false,"export":true},
+    {"data":"note","CH":"备注","show":false,"export":true},
+    {"data":"opt","CH":"详情","show":true,"export":false}
+  ],
+  "color":{
+    "骨干网":"#ffd9ec",
+    "外网":"#d9ffff",
+    "存储网":"#83d9d9",
+    "局域网生产组":"#ffe6d9",
+    "局域网非生产组":"#f1e1ff",
+    "其他":"#deffac"
+  }
+}

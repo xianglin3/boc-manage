@@ -1,0 +1,137 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}VLAN信息维护{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block headcontent %}
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/datatables/media/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/vlan.css"/>
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/index.css"/>
+{% endblock %}
+{% block pagecontent %}
+    {% include "campus_aiops/navBase.html"%}
+    {% verbatim myblock %}
+    <div id="vlan" class="vlan-list">
+        <div class="row">
+            <div class="col-lg-12">
+                <button @click = 'addVlan' type="button" class="btn btn-primary btn-sm">新增VLAN</button>
+                <form enctype="multipart/form-data" id="import_vlan" class="file btn btn-primary btn-sm">批量导入VLAN规划信息
+                    <input @change="exportVlan" type="file" name="excel" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
+                </form>
+            </div>
+        </div>
+        <hr />
+        <div class="row" style="padding-bottom:5px;">
+            <div class="col-lg-12">
+                <button type="button" class="btn btn-primary btn-xs" @click="deleteVlan()">批量删除</button>
+                <button type="button" class="btn btn-info btn-xs" @click="downloadVlan()">VLAN下载</button>
+                <a href="" download="VLAN信息表.xlsx" id="hf"></a>
+                <div class="dropdown show-filed">
+                    <button class="btn btn-info btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+                        显示字段
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li data-stopPropagation="true" v-for = "(value,key) in showField">
+                            <label style="width:100%;"><input style="margin-right:6px;" type="checkbox" :value="value">{{key}}</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="table_id_example" class="table table-striped table-bordered table-hover" width="100%"> 
+                    <thead class="text-center"> 
+                        <tr style="background: #3c8dbc; color:#fff;">
+                            <th class="text-center">
+                                <input type="checkbox" class="checkall" />
+                            </th>
+                            <th v-for = 'ele in tableField'>{{ele.text}}</th>
+                            <th class="text-center">操作</th> 
+                        </tr> 
+                    </thead> 
+                    <tbody>  
+                        <tr v-for = '(ele,index) in vlanData'>
+                            <td class="text-center"><input type="checkbox"  class="checkchild"  :value="ele['id']" /></td>
+                            <td v-for = 'obj in tableField'></td>
+                            <td class="text-center" @mouseout="outHide" @mouseover="overShow(index)"  style="position:relative;">
+                                <i class="el-icon-menu" v-show="opera !== index" style="font-size: 18px;color:#00acd6;cursor:pointer;"></i>
+                                <div v-show="opera == index" style="position:absolute;top:0;right:0;z-index:999;" class="btn-group-vertical" role="group" aria-label="...">
+                                    <button class="btn btn-info btn-sm" @click="updataVlan(index)">编辑</button>
+                                    <button class="btn btn-warning btn-sm" @click="deleteVlan(index)">删除</button>
+                                    <button class="btn btn-success btn-sm" @click="detailVlan(index)" >IP使用情况</button>
+                                    <button class="btn btn-success btn-sm" @click="toIp(index)" >测试跳转</button>
+                                </div>
+                            </td>
+                        </tr> 
+                    </tbody>
+               </table> 
+            </div>
+        </div>
+        <div class="preloader" v-show="loading"><i class="fa fa-spinner fa-spin fa-5x"></i></div>
+        <el-dialog :title="modalTitle" :visible.sync="dialogVisible" size="large">
+            <el-form :model="ruleForm"  :rules="rules" ref="ruleForm" label-width="100px">
+                <el-row :gutter="10">
+                    <el-col :xs="24" :sm="24" :md="12" :lg="12">
+                        <el-form-item label="vlan号" prop="vlan_id">
+                            <el-input v-model="ruleForm.vlan_id"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="24" :md="12" :lg="12">
+                        <el-form-item label="vlan名" prop="vlan_name">
+                            <el-input v-model="ruleForm.vlan_name"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="24" :md="12" :lg="12">
+                        <el-form-item label="所属部门" prop="department_name" >
+                            <el-input v-model="ruleForm.department_name"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="24" :md="12" :lg="12">
+                        <el-form-item label="地域" prop="area">
+                            <el-select v-model="ruleForm.area" placeholder="请选择地域" style="display:block;">
+                                <el-option v-for="ele in area_list" :label="ele" :key="ele" :value="ele"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="24" :md="12" :lg="12">
+                        <el-form-item label="IP地址段" prop="ip_section">
+                            <el-input v-model="ruleForm.ip_section" placeholder="格式：x.x.x.0"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="24" :md="12" :lg="12">
+                        <el-form-item label="网关" prop="ip_gateway">
+                            <el-input v-model="ruleForm.ip_gateway" placeholder="格式：x.x.x.x"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="24" :md="12" :lg="12">
+                        <el-form-item label="掩码" prop="ip_mask">
+                            <el-input v-model="ruleForm.ip_mask" placeholder="格式：255.255.x.0"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="24" :md="12" :lg="12">
+                        <el-form-item label="备注" prop="note">
+                            <el-input type="textarea" :rows="2" v-model="ruleForm.note"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+            </el-form>
+            <div class="row text-center">
+                <el-form>
+                  <el-form-item>
+                    <el-button type="success" @click="submitForm('ruleForm')">提交</el-button>
+                    <el-button type="primary" @click="resetForm('ruleForm')">重置</el-button>
+                    <el-button type="warning" data-dismiss="modal" data-act="cancel" @click="cencelDialog('ruleForm')">取消</el-button>
+                  </el-form-item>
+                </el-form>
+            </div>
+        </el-dialog>
+    </div>
+    {% endverbatim myblock %}
+{% endblock %}
+{% block bodycontent %}
+    <script src="/static/jquery_datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/static/bower_components/datatables/media/js/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/navBase.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/vlan.js"></script>
+{% endblock %}

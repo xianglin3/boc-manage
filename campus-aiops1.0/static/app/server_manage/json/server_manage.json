@@ -1,0 +1,98 @@
+{
+  "search":[
+    {"field":"mtype","CH":"设备类型","options":[
+      {"value":"物理机","name":"物理机"},
+      {"value":"虚拟机","name":"虚拟机"}
+    ]},
+    {"field":"ip","CH":"设备ip"},
+    {"field":"hostname","CH":"设备名称"},
+    {"field":"pm_id","CH":"所属物理机IP"},
+    {"field":"dev_model","CH":"型号"},
+    {"field":"asset_num","CH":"资产编码"},
+    {"field":"series_num","CH":"序列号"},
+    {"field":"reg_pos","CH":"安装地点","options":[
+      {"value":"黑山扈","name":"黑山扈"},
+      {"value":"西单","name":"西单"},
+      {"value":"海鹰","name":"海鹰"},
+      {"value":"张江","name":"张江"},
+      {"value":"亚太中心","name":"亚太中心"},
+      {"value":"欧非中心","name":"欧非中心"},
+      {"value":"美洲中心","name":"美洲中心"}
+    ]},
+    {"field":"business_system","CH":"业务系统","options":[
+      {"value":"中心网管监控","name":"中心网管监控"},
+      {"value":"全行网管监控","name":"全行网管监控"},
+      {"value":"海外网管监控","name":"海外网管监控"},
+      {"value":"网管工具开发","name":"网管工具开发"},
+      {"value":"团队运维","name":"团队运维"}
+    ]},
+    {"field":"application","CH":"用途"},
+    {"field":"environment","CH":"部署环境","options":[
+      {"value":"生产","name":"生产"},
+      {"value":"灾备演练","name":"灾备演练"},
+      {"value":"开发测试","name":"开发测试"}
+    ]},
+    {"field":"team","CH":"维护团队","options":[
+      {"value":"系统三Vmware","name":"系统三Vmware"},
+      {"value":"系统三青云","name":"系统三青云"},
+      {"value":"上海系统三","name":"上海系统三"},
+      {"value":"团队自维护（虚机池）","name":"团队自维护（虚机池）"},
+      {"value":"团队自维护（非虚机池）","name":"团队自维护（非虚机池）"}
+    ]},
+    {"field":"bus_type","CH":"运维组","options":[
+      {"value":"团队共用","name":"团队共用"},
+      {"value":"安全规划组","name":"安全规划组"},
+      {"value":"局域网组","name":"局域网组"},
+      {"value":"骨干网组","name":"骨干网组"},
+      {"value":"外网组","name":"外网组"},
+      {"value":"存储组","name":"存储组"},
+      {"value":"网管组","name":"网管组"}
+    ]},
+    {"field":"user","CH":"负责人"}
+  ],
+  "server_list":[
+    {"data":"id","CH":"<input type='checkbox' data-id='all' />","show":true},
+    {"data":"mtype","CH":"设备类型","show":false},
+    {"data":"ip","CH":"设备ip","show":true},
+    {"data":"hostname","CH":"设备名称","show":true},
+    {"data":"pm_id","CH":"所属物理机IP","show":false},
+    {"data":"dev_model","CH":"型号","show":false},
+    {"data":"asset_num","CH":"固定资产编码","show":false},
+    {"data":"series_num","CH":"序列号","show":false},
+    {"data":"reg_pos","CH":"安装地点","show":false},
+    {"data":"detail_locate","CH":"机柜位置","show":false},
+    {"data":"cpu","CH":"CPU","show":false},
+    {"data":"mem","CH":"内存","show":false},
+    {"data":"disk","CH":"硬盘","show":false},
+    {"data":"os","CH":"操作系统","show":false},
+    {"data":"business_system","CH":"业务系统","show":false},
+    {"data":"application","CH":"用途","show":true},
+    {"data":"environment","CH":"部署环境","show":false},
+    {"data":"team","CH":"维护团队","show":false},
+    {"data":"bus_type","CH":"运维组","show":true},
+    {"data":"user","CH":"负责人","show":true},
+    {"data":"note","CH":"备注","show":false},
+    {"data":"update_time","CH":"更新时间","show":false},
+    {"data":"opt","CH":"操作","show":true}
+  ],
+  "lang":{
+    "sProcessing": "处理中...",
+    "sLengthMenu": "每页显示 _MENU_ 条记录",
+    "sZeroRecords": "没有匹配结果",
+    "sInfo": "显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 条",
+    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+    "sInfoPostFix": "",
+    "sSearch": "模糊搜索:",
+    "sUrl": "",
+    "sEmptyTable": "未搜索任何数据...",
+    "sLoadingRecords": "载入中...",
+    "sInfoThousands": ",",
+    "oPaginate": {
+      "sFirst": "首页",
+      "sPrevious": "上页",
+      "sNext": "下页",
+      "sLast": "末页"
+    }
+  }
+}

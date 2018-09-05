@@ -1,0 +1,23 @@
+[
+  {
+    "total_unused_electricty_1G": 200,
+    "terrain": "test1",
+    "total_interface": 200,
+    "total_unused_optical_10G": 200,
+    "mnt_ip": "test1",
+    "id": 1,
+    "name": "test1",
+    "total_unused_optical_40G": 200,
+    "area": "test1",
+    "total_unused_optical_1G": 200,
+    "total_used_electricty_1G": 200,
+    "total_used_interface": 200,
+    "fun_area": "test1",
+    "total_used_optical_1G": 200,
+    "total_unused_electricty_10G": 200,
+    "total_used_electricty_10G": 200,
+    "total_used_optical_10G": 200,
+    "total_used_optical_40G": 200,
+    "total_unused_interface": 200
+  },
+  {"total_unused_electricty_1G": 300, "terrain": "test2", "total_interface": 300, "total_unused_optical_10G": 300, "mnt_ip": "test2", "id": 2, "name": "test2", "total_unused_optical_40G": 300, "area": "test2", "total_unused_optical_1G": 300, "total_used_electricty_1G": 300, "total_used_interface": 300, "fun_area": "test2", "total_used_optical_1G": 300, "total_unused_electricty_10G": 300, "total_used_electricty_10G": 300, "total_used_optical_10G": 300, "total_used_optical_40G": 300, "total_unused_interface": 300}, {"total_unused_electricty_1G": 200, "terrain": "test1", "total_interface": 200, "total_unused_optical_10G": 200, "mnt_ip": "test1", "id": 1, "name": "test1", "total_unused_optical_40G": 200, "area": "test1", "total_unused_optical_1G": 200, "total_used_electricty_1G": 200, "total_used_interface": 200, "fun_area": "test1", "total_used_optical_1G": 200, "total_unused_electricty_10G": 200, "total_used_electricty_10G": 200, "total_used_optical_10G": 200, "total_used_optical_40G": 200, "total_unused_interface": 200}, {"total_unused_electricty_1G": 300, "terrain": "test2", "total_interface": 300, "total_unused_optical_10G": 300, "mnt_ip": "test2", "id": 2, "name": "test2", "total_unused_optical_40G": 300, "area": "test2", "total_unused_optical_1G": 300, "total_used_electricty_1G": 300, "total_used_interface": 300, "fun_area": "test2", "total_used_optical_1G": 300, "total_unused_electricty_10G": 300, "total_used_electricty_10G": 300, "total_used_optical_10G": 300, "total_used_optical_40G": 300, "total_unused_interface": 300}]

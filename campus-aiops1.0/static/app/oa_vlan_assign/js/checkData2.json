@@ -1,0 +1,14 @@
+{
+	"data" : [
+        {
+            "manual_ip":"12.23.232.1",
+            "manual_mac":"234.23423.24",
+            "manual_switch":"33333",
+            "manual_int":"手动端口",
+            "auto_ip":"自动12.23.232.1",
+            "auto_mac":"自动234.23423.24",
+            "auto_switch":"自动33333",
+            "auto_int":"自动端口"
+        }
+    ]
+}

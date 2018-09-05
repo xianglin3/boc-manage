@@ -1,0 +1,13 @@
+[
+  { "data": "grandparent_display","CH":"一级空间"},
+  { "data": "parent_display","CH":"二级空间"},
+  { "data": "network_address","CH":"网络号"},
+  { "data": "network_mask","CH":"掩码"},
+  { "data": "name","CH":"子机构/分区名"},
+  { "data": "type","CH":"区域类型"},
+  { "data": "security","CH":"安全类型"},
+  { "data": "position","CH":"物理位置"},
+  { "data": "manage_group","CH":"管理人"},
+  { "data": "use_group","CH":"使用人"},
+  { "data": "opt","CH":"操作"}
+]

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>信息采集平台</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="/static/css/matrix-style.css"/>
+    <link rel="stylesheet" href="/static/css/matrix-media.css"/>
+    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+    {% block headjs %}
+
+    {% endblock %}
+</head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+    <h1><a href="/infocollection/">信息采集平台</a></h1>
+</div>
+<!--close-Header-part-->
+
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+  <ul class="nav">
+        <li ><a >  <i class="icon icon-user"></i>  <span class="text">欢迎 {{ user }}</span><b class="caret"></b></a> </li>
+        <li ><a title="" href="/logout"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
+    </ul>
+</div>
+<!--close-top-Header-menu-->
+<!--start-top-serch-->
+{#<div id="search">#}
+{#    <input type="text" placeholder="Search here..."/>#}
+{#    <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>#}
+{#</div>#}
+<!--close-top-serch-->
+<!--sidebar-menu-->
+<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+    <ul>
+        <li  {% if  status == None %} class="active"{% endif %} ><a href="/PatrolIssues/"><i class="icon icon-flag"></i><span>实时直采</span></a> </li>
+        <li  {% if  status == 0 %} class="active"{% endif %} ><a href="/PatrolIssues/"><i class="icon icon-flag"></i><span>实时采集分析</span></a> </li>
+        <li  {% if  status == 0 %} class="active"{% endif %} ><a href="/PatrolIssues/?status=0"> <i class="icon icon-check-empty"></i><span>定时直采</span></a> </li>
+        <li  {% if  status == 0 %} class="active"{% endif %} ><a href="/PatrolIssues/?status=0"> <i class="icon icon-check-empty"></i><span>定时采集分析</span></a> </li>
+        <li  {% if  status == 0 %} class="active"{% endif %} ><a href="/PatrolIssues/?status=0"> <i class="icon icon-check-empty"></i><span>分析器脚本管理</span></a> </li>
+        <li><a href="/admin/"><i class="icon icon-check"></i> <span>管理员</span></a></li>
+    </ul>
+</div>
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+
+<div id="content">
+    <!--breadcrumbs-->
+      <div id="content-header">
+        <div id="breadcrumb"> <a title="" class="tip-bottom"> {% block title %}{% endblock %}</a></div>
+      </div>
+    <!--End-breadcrumbs-->
+
+    <!--Action boxes-->
+    <div class="container-fluid">
+    </div>
+    <!--End-Action boxes-->
+
+    <!--Chart-box-->
+    <div class="row-fluid">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <!--End-Chart-box-->
+</div>
+</div>
+</div>
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+
+<div class="row-fluid">
+    <div id="footer" class="span12"> 2016 &copy; 网络工具. Brought to you by 王旭涛</div>
+</div>
+
+<!--end-Footer-part-->
+
+{% block bodyjs %}
+
+{% endblock %}
+<script src="/static/js/excanvas.min.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/jquery.ui.custom.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery.flot.min.js"></script>
+<script src="/static/js/jquery.flot.resize.min.js"></script>
+<script src="/static/js/jquery.peity.min.js"></script>
+<script src="/static/js/fullcalendar.min.js"></script>
+<script src="/static/js/matrix.js"></script>
+<script src="/static/js/matrix.dashboard.js"></script>
+<script src="/static/js/jquery.gritter.min.js"></script>
+<script src="/static/js/matrix.interface.js"></script>
+<script src="/static/js/matrix.chat.js"></script>
+<script src="/static/js/jquery.validate.js"></script>
+<script src="/static/js/matrix.form_validation.js"></script>
+<script src="/static/js/jquery.wizard.js"></script>
+<script src="/static/js/jquery.uniform.js"></script>
+<script src="/static/js/select2.min.js"></script>
+<script src="/static/js/matrix.popover.js"></script>
+<script src="/static/js/jquery.dataTables.min.js"></script>
+<script src="/static/js/matrix.tables.js"></script>
+
+<script type="text/javascript">
+    // This function is called from the pop-up menus to transfer to
+    // a different page. Ignore if the value returned is a null string:
+    function goPage(newURL) {
+
+        // if url is empty, skip the menu dividers and reset the menu selection to default
+        if (newURL != "") {
+
+            // if url is "-", it is this page -- reset the menu:
+            if (newURL == "-") {
+                resetMenu();
+            }
+            // else, send page to designated URL
+            else {
+                document.location.href = newURL;
+            }
+        }
+    }
+
+    // resets the menu selection upon entry to this page:
+    function resetMenu() {
+        document.gomenu.selector.selectedIndex = 2;
+    }
+</script>
+</body>
+</html>

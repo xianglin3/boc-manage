@@ -1,0 +1,90 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left:50%;
+  margin-left: -80px;
+  width:160px;
+  height:160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+div.table_container{
+  margin-top: 20px;
+  #access_info_filter{
+    input{
+      border-radius: 4px;
+    }
+  }
+  #access_info_length{
+    select{
+      border-radius: 2px;
+    }
+  }
+  #access_info{
+    thead{
+      background-color: #3c8dbc;
+      color: #fff;
+      tr{
+        th:first-child{
+          background-image:none;
+        }
+        th{
+          padding: 6px 18px;
+        }
+      }
+    }
+    tbody{
+      tr{
+        td[data-field=select]{
+          padding: 2px 18px;
+        }
+        td[data-field=opt]{
+          text-align: center;
+          button.btn{
+            padding:2px 12px;
+          }
+        }
+        td{
+          padding: 2px 18px;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+#myModal{
+  div.modal-content{
+    border-radius: 4px;
+  }
+  @media (min-width: 1300px){
+    .modal-slg {
+      width: 1270px;
+    }
+  }
+  div.table-responsive{
+    height: 500px;
+    overflow-y: auto;
+  }
+}
+#deviceList{
+  thead{
+    background-color: #00acd6;
+    color: #fff;
+    tr{
+      th{
+        white-space: nowrap;
+      }
+    }
+  }
+  tbody{
+    tr{
+      td{
+        white-space: nowrap;
+      }
+    }
+  }
+}

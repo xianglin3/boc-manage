@@ -1,0 +1,18 @@
+{
+	"data" : [
+        {
+            "id": "66",
+            "vlan_id":       "123",
+            "vlan_name":       "123",
+            "department_name":     "123部门",
+            "area":     "地域",
+            "vlan_purpose": "1232011/04/25",
+            "ip_section":     "123.123.1.0",
+            "ip_gateway":       "123.11.11.1",
+            "ip_mask":       "255.255.232.0",
+            "note":       "无",
+            "operator":"南天一线",
+            "updata_time":"更新时间"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 1060;
+}
+#show_filed {
+  float: left;
+  margin-right: 4px;
+}
+#oa_vlan_assign_department .file {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+#oa_vlan_assign_department .file input {
+  position: absolute;
+  font-size: 100px;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+#oa_vlan_assign_department .el-select .el-input__inner{
+  cursor: pointer;
+  padding-right:10px;
+}

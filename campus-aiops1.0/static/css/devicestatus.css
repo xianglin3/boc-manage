@@ -1,0 +1,101 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+.box-body {
+  font-family: Helvetica, 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+}
+.box-body .container-fruit div.row {
+  margin-top: 10px;
+}
+.box-body .container-fruit div.row div {
+  margin-bottom: 10px;
+}
+.box-body .container-fruit div.row .col-md-2 {
+  text-align: center;
+}
+.box-body .container-fruit div.row .col-md-2 b {
+  color: #3c8dbc;
+  font-size: 26px;
+}
+.box-body .container-fruit div.row .col-md-2 b.b {
+  color: #f39c12;
+}
+.box-body .container-fruit div.row .col-md-6 select {
+  border-radius: 6px;
+}
+.box-body .container-fruit div.row .col-md-4 {
+  padding-top: 5px;
+  font-size: 16px;
+}
+.box-body .container-fruit div.row .col-md-4 b {
+  color: #6D5397;
+}
+.box-body .container-fruit .show_result .page_tab .nav-pills > li > a {
+  border-radius: 6px 6px 0px 0px;
+  color: #fff;
+  background-color: #00607A;
+}
+.box-body .container-fruit .show_result .page_tab .nav-pills > li > a.tip {
+  cursor: default;
+}
+.box-body .container-fruit .show_result .page_tab .nav-pills > li.active > a {
+  background-color: #0078BB;
+  border-top-color: transparent;
+}
+.box-body .container-fruit .show_result .page_content {
+  padding: 20px;
+  height: 500px;
+  background-color: #0078BB;
+  background-image: -webkit-linear-gradient(top, #0078bb, #004889);
+  background-image: -moz-linear-gradient(top, #0078bb, #004889);
+  background-image: -ms-linear-gradient(top, #0078bb, #004889);
+  background-image: -o-linear-gradient(top, #0078bb, #004889);
+  background-image: linear-gradient(to bottom, #0078bb, #004889);
+}
+.box-body .container-fruit .show_result .page_content .page {
+  height: 460px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: none;
+}
+.box-body .container-fruit .show_result .page_content .page pre {
+  margin-bottom: 0px;
+  min-height: 100%;
+  background-color: #555;
+  color: #fff;
+  font-size: 1.2em;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
+.box-body .container-fruit .show_result .page_content .page pre a {
+  color: #fff;
+}
+.box-body .container-fruit .show_result .page_content .page pre a b {
+  display: inline-block;
+  padding: 0px 2px;
+  background-color: #ea4323;
+}
+.box-body .container-fruit .show_result .page_content .page pre a span[data-lim] {
+  display: inline-block;
+  padding: 1px 2px;
+}
+.box-body .container-fruit .show_result .page_content .page.active {
+  display: block;
+}
+.hrLine {
+  height: 6px;
+  border-top: 2px dotted #6D5397;
+  border-bottom: 2px dotted #6D5397;
+  margin: 26px 0px;
+}

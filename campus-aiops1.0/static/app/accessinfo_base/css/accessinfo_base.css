@@ -1,0 +1,68 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+div.table_container {
+  margin-top: 20px;
+}
+div.table_container #access_info_filter input {
+  border-radius: 4px;
+}
+div.table_container #access_info_length select {
+  border-radius: 2px;
+}
+div.table_container #access_info thead {
+  background-color: #3c8dbc;
+  color: #fff;
+}
+div.table_container #access_info thead tr th:first-child {
+  background-image: none;
+}
+div.table_container #access_info thead tr th {
+  padding: 6px 18px;
+}
+div.table_container #access_info tbody tr td[data-field=select] {
+  padding: 2px 18px;
+}
+div.table_container #access_info tbody tr td[data-field=opt] {
+  text-align: center;
+}
+div.table_container #access_info tbody tr td[data-field=opt] button.btn {
+  padding: 2px 12px;
+}
+div.table_container #access_info tbody tr td {
+  padding: 2px 18px;
+  vertical-align: middle;
+}
+#myModal div.modal-content {
+  border-radius: 4px;
+}
+@media (min-width: 1300px) {
+  #myModal .modal-slg {
+    width: 1270px;
+  }
+}
+#myModal div.table-responsive {
+  height: 500px;
+  overflow-y: auto;
+}
+#deviceList thead {
+  background-color: #00acd6;
+  color: #fff;
+}
+#deviceList thead tr th {
+  white-space: nowrap;
+}
+#deviceList tbody tr td {
+  white-space: nowrap;
+}

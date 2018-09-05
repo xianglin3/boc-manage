@@ -1,0 +1,69 @@
+/*nav style*/
+section.content div.box div.box-header {
+  display: none;
+}
+[v-block]{
+    display:none;
+}
+.content-wrapper, .right-side{
+    background-color:#fff;
+}
+.box{
+    border:none;
+    box-shadow:none;
+}
+/*loading style*/
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 9999;
+}
+.equipment{
+    padding:0 50px 0 30px;
+}
+.card{
+    position:relative;
+    height:184px;
+    border: 1px solid #d1dbe5;
+    border-radius: 15px;
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.10), 0 0 6px 0 rgba(0,0,0,.04);
+    margin-bottom:22px;
+    text-align:center;
+}
+.equiIcon{
+    display:inline-block;
+    font-size:72px;
+    line-height:120px;
+    color:#bd77fd;
+}
+.status{
+    position:absolute;
+    right:20px;
+    top:22px;
+    font-size:30px;
+}
+.codeY{
+    color:#1ec335;
+}
+.codeN{
+    color:#fe4261;
+}
+.el-dialog{
+    width:60%;
+}
+pre{
+    background-color:#fff;
+    min-height:400px;
+    max-height:600px;
+}

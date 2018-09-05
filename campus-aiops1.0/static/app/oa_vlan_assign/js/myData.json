@@ -1,0 +1,95 @@
+{
+	"data" : [
+        {
+            "id": "5",
+            "vlan_id":       "666",
+            "vlan_name":       "测试名称4",
+            "department_name":     "部门",
+            "area":     "地域",
+            "vlan_purpose": "2011/04/25",
+            "ip_section":     "1.1.1.0",
+            "ip_gateway":       "1.11.11.1",
+            "ip_mask":       "255.255.23.0",
+            "note":       "无",
+            "operator":"南天一线",
+            "updata_time":"更新时间"
+        },
+        {
+            "id": "7",
+            "vlan_id":       "8888",
+            "vlan_name":       "测试名称4",
+            "department_name":     "黑山扈中国银",
+            "area":     "地域",
+            "vlan_purpose": "2011/04/25",
+            "ip_section":     "1.1.1.0",
+            "ip_gateway":       "1.11.11.1",
+            "ip_mask":       "255.255.23.0",
+            "note":       "无",
+            "operator":"南天一线",
+            "updata_time":"更新时间"
+        },
+        {
+            "id": "9",
+            "vlan_id":       "7777",
+            "vlan_name":       "测试名称4",
+            "department_name":     "2部门",
+            "area":     "地域",
+            "vlan_purpose": "2011/04/25",
+            "ip_section":     "1.1.1.0",
+            "ip_gateway":       "1.11.11.1",
+            "ip_mask":       "255.255.23.0",
+            "note":       "无",
+            "operator":"南天一线",
+            "updata_time":"更新时间"
+        },
+        {
+            "id": "11",
+            "vlan_id":       "9999",
+            "vlan_name":       "测试名称4",
+            "department_name":     "3部门",
+            "area":     "地域",
+            "vlan_purpose": "2011/04/25",
+            "ip_section":     "1.1.1.0",
+            "ip_gateway":       "1.11.11.1",
+            "ip_mask":       "255.255.23.0",
+            "note":       "无",
+            "operator":"南天一线",
+            "updata_time":"更新时间"
+        },
+        {
+            "id": "12",
+            "vlan_id":       "110",
+            "vlan_name":       "测试名称4",
+            "department_name":     "4部门",
+            "area":     "地域",
+            "vlan_purpose": "2011/04/25",
+            "ip_section":     "1.1.1.0",
+            "ip_gateway":       "1.11.11.1",
+            "ip_mask":       "255.255.23.0",
+            "note":       "无",
+            "operator":"南天一线",
+            "updata_time":"更新时间"
+        }
+    ],
+    "department":[
+        {
+        "department_name":"部门1"
+        },
+        {
+        "department_name":"部门3"
+        },
+        {
+        "department_name":"部门2"
+        },
+        {
+        "department_name":"部门4"
+        },
+        {
+        "department_name":"部门5"
+        },
+        {
+        "department_name":"555555"
+        }
+    ],
+    "area":"测试地域"
+}

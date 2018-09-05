@@ -1,0 +1,10 @@
+[
+  { "data": "node","CH":"IP"},
+  { "data": "dev_name","CH":"设备名"},
+  { "data": "device_type","CH":"类型"},
+  { "data": "fun_area","CH":"功能区"},
+  { "data": "reg_pos","CH":"地域"},
+  { "data": "building_location","CH":"机房"},
+  { "data": "detail_locate","CH":"详细位置"},
+  { "data": "factory","CH":"厂商"}
+]

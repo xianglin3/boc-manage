@@ -1,0 +1,57 @@
+div.content_top{
+  position: relative;
+  z-index: 10;
+  >div.aside{
+    position: absolute;
+    top: 15px;
+    z-index: 11;
+    background-color: rgba(255,255,255,0.85);
+  }
+  div.device_info{
+    left: 15px;
+    padding: 15px;
+    color:#222;
+    table{
+      tr{
+        th{
+          padding: 3px 6px;
+          min-width: 100px;
+        }
+        td{
+          padding: 3px 6px;
+        }
+      }
+    }
+  }
+  div.port_info{
+    right: 0px;
+  }
+  #canvas{
+    background-color: #e5e5e5;
+    vertical-align: top;
+    cursor: pointer;
+  }
+}
+body{
+  position: relative;
+  z-index: 1;
+  .main-footer {
+    background-color:#3c8dbc;
+    position: fixed;
+    bottom: 0px;
+    z-index: 100;
+    width: 100%;
+    padding: 15px;
+    color: #fff;
+    border-top: 1px solid #d2d6de;
+    b, strong {
+      font-weight: 700;
+    }
+    a{
+      color: #fff;
+    }
+    .pull-right {
+      float: right!important;
+    }
+  }
+}

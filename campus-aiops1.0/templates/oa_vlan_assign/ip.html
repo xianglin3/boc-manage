@@ -1,0 +1,214 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}局域园区VLAN规划及IP分配{% endblock %}
+{% block pageheader %}IP管理列表{% endblock %}
+{% block headcontent %}
+<!-- DataTables CSS(with Buttons)-->
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/datatables/media/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/app/oa_vlan_assign/layer/theme/default/layer.css">
+    <link rel="stylesheet" href="/static/app/oa_vlan_assign/css/oa_vlan_assign_ip.css"/>
+{% endblock %}
+{% block pagecontent %}
+    <div class="vlan" id="oa_vlan_assign_ip" :data = "initData">
+      <!--  -->
+{% verbatim myblock %}
+        <!-- 检查弹出框 -->
+        <div class="modal fade bs-example-modal-lg" id="check" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-lg" role="document" style="width:71%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">检查项</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <div class="btn-group" data-toggle="buttons">
+                          <label class="btn btn-primary" tag='0' @click = "getCheck(0)">
+                            <input type="radio"  name="options" id="option1" autocomplete="off"> 交换机信息检查
+                          </label>
+                          <label class="btn btn-primary" tag='1' @click = "getCheck(1)">
+                            <input type="radio"  name="options" id="option2" autocomplete="off"> 终端IP/MAC检查
+                          </label>
+                        </div>
+                      </div>
+                      <p id="desText" style="padding:10px;border-bottom:1px solid #ccc;color:#204d74"></p>
+                      <table id="checkTable" class="table">
+                          <thead>
+                              <tr>
+                                  <th class="text-center" v-for='(ele,index) in checkField' :class="index > 3?'success':'warning' ">{{ele.title}}</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr v-for = 'ele in checkData' class="text-center">
+                                  <td v-for = '(el,index) in checkField' :class="index > 3?'success':'warning' ">{{ele[el.field]}}</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <center>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal" data-act="cancel">取消</button>
+                    </center>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- 详情页信息 -->
+        <div class="modal fade bs-example-modal-lg" id="datas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-lg" role="document" style="width:69%;">
+            <div class="modal-content">
+                <div class="modal-header" style="border:none;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">详细信息</h3>
+                    <div class="status">
+                        <i :class="ipStatus == 1 ? 'bgid':'bgig' "></i>
+                        <span v-text = "ipStatus == 1 ? '已回收':'使用中' "></span>
+                    </div>
+                    <div class="colorTip">
+                        <p><i style="background-color: #B0E0E6"></i>人工维护信息</p>
+                        <p><i style="background-color: #C1FFC1"></i>自动采集信息</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group row" style="background-color:#B0E0E6;margin-bottom: 0; ">
+                      <li :class="index > 24 ? 'bg1':'bg2' " :style="index > 24 ? 'display:none':'border:none' " class="list-group-item col-sm-6 col-md-4 col-lg-3" v-for = '(ele,index) in seeField'>
+                          <span :style="index > 24 ? 'background-color: #C1FFC1':'background-color: #B0E0E6' " :title='ele.text'>{{ ele.text }}</span>
+                          <span style="background-color: white" :title='seeData[ele.field]'>{{ seeData[ele.field] || '无内容' }}</span>
+                      </li>
+                    </ul>
+                    <ul class="list-group row" style="background-color:#C1FFC1 ">
+                      <li :class="index > 24 ? 'bg1':'bg2' " :style="index > 24 ? 'border:none':'display:none' " class="list-group-item col-sm-6 col-md-4 col-lg-3" v-for = '(ele,index) in seeField'>
+                          <span :style="index > 24 ? 'background-color: #C1FFC1':'background-color: #B0E0E6' " :title='ele.text'>{{ ele.text }}</span>
+                          <span style="background-color: white" :title='seeData[ele.field]'>{{ seeData[ele.field] || '无内容' }}</span>
+                      </li>
+                    </ul>
+                </div>
+                <div class="modal-footer text-center">
+                    <center>
+                        <button  type="button" :disabled="ipStatus == 1 ? true:false" class="btn btn-warning" @click = "seeDelete()" data-act="recycl">回收</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal" data-act="cancel">取消</button>
+                    </center>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12" style="padding:15px;">
+<!--                 <a  class="btn btn-primary btn-sm" href="/oa_vlan_assign/port_status/">端口状态查询</a> -->
+
+                <a href="/oa_vlan_assign/vlan/" class="btn btn-success btn-sm">VLAN信息维护</a>
+                <a href="/portconfiger/campus_interfaces_usage_info/" class="btn btn-success btn-sm">统计分析</a>
+                <a href="/oa_vlan_assign/department/" class="btn btn-success btn-sm">部门信息维护</a>
+                <a href="/oa_vlan_assign/device/" class="btn btn-success btn-sm">园区设备信息维护</a>
+                <a href="/oa_vlan_assign/reference/" class="btn btn-success btn-sm">参考文档与模板下载</a>
+            </div>
+            <div class="col-lg-12">
+                <button type="button" @click = "addIp('ruleForm')" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ipAdd" data-act="addIP">IP分配</button>
+                <form enctype="multipart/form-data" id="import_ip_excel" class="file btn btn-primary btn-sm">批量导入IP分配信息
+                    <input type="file" name="excel" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
+                </form>
+                <button @click = 'resetCheck()' type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#check">一致性检查</button>
+            </div>
+            <div class="col-lg-12" style="padding-top:10px;position:relative;">
+                <div class="input-group" id="searchForm" style="width:100%;">
+                    <textarea style="width:22%;" type="textarea" class="form-control inline" rows="5" placeholder="输入IP或者MAC地址一种,回车键换行"  data-placement="top" data-content="mac地址只支持三种格式的输入：6c0b.8445.0941，6c:0b:84:45:09:41和6c-0b-84-45-09-41"></textarea>
+                  <div style="float:left;padding-left:8px;margin-top: 12px;">
+                    <select v-model = 'selected' class="btn btn-default btn-block" id="status" style="background-color: #FDFEFE;padding:6px 42px;">
+                        <option value="2">IP全部列表</option>
+                        <option value="0">IP已分配列表</option>
+                        <option value="1">IP已回收列表</option>
+                    </select>
+                    <button @click = "searchIp()" style="width:48%;margin-top: 19px;" class="btn btn-primary" id="searchBtn" data-act="searchIp" type="button" >查询</button>
+                    <button @click="resetSearch()" style="width:48%;margin-top: 19px;" class="btn btn-warning">重置查询</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row" style="padding-bottom:5px;">
+            <div class="col-lg-12">
+                <button type="button" @click='deleteBtn()' class="btn btn-primary btn-xs" data-act="bulk_delete">批量回收</button>
+                <button type="button" class="btn btn-info btn-xs" @click="dowanloadExcel()">批量导出Excel</button>
+                <a href="" download="IP信息表.xlsx" id="hf"></a>
+                <div class="dropdown" id="show_filed">
+                    <button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">显示字段<span class="caret"></span></button>
+                    <!-- 点击按钮会弹出下面的相应的下拉列表 -->
+                    <ul class="dropdown-menu" role="menu">
+                        <li data-stopPropagation="true" v-for = "(value,key) in showField">
+                            <label style="width:100%;"><input style="margin-right:6px;" :data-column="value" type="checkbox" data-field="name" :value="value">{{key}}</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="table_id_example" class="table table-striped table-bordered table-hover" width="100%">
+                    <thead class="text-center">
+                        <tr style="background: #337ab7; color:#fff;">
+                            <th class="text-center">
+                                <input type="checkbox" class="checkall" />
+                            </th>
+                            <th class="text-center">状态</th>
+                            <th class="text-center" v-for = 'ele in ipField'>{{ele.text}}</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for = '(ele,index) in ipData' class="text-center">
+                            <td class="text-center">
+                                <input type="checkbox"  class="checkchild" :deletes="ele.show_status == 1 ? '':ele.id"   :value="ele.id" />
+                            </td>
+                            <td v-text = "ele.show_status == 1 ? '已回收':'在用'"></td>
+                            <td v-for = 'obj in ipField'>{{ele[obj.field]}}</td>
+                            <td style="">
+                                <button @click = "deleteBtn(index)" v-html="ele.show_status == 1?'已回收':'回收'" :disabled="ele.show_status == 1? true:false" class="btn btn-warning btn-sm" style="width:70px;margin-bottom: 5px;" data-act="delIp"  href="#"></button>
+                                <button class="btn btn-success btn-sm inline" id="checkIp" @click = "seeIp(index)" data-toggle="modal" data-target="#datas" data-act="checkIp" >查看详情</button>
+                            </td>
+                        </tr>
+                    </tbody>
+               </table>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <ul class="list-group" style="display: flex;border:none;">
+                <li class="list-group-item" style="border:none;font-size: 16px;">友情链接：</li>
+                <li class="list-group-item" style="border:none;font-size: 16px;">
+                    <a href="http://22.122.51.80:8080/imc/" style="color:rgb(0, 114, 198)">同城EAD服务器</a>
+                </li>
+                <li class="list-group-item" style="border:none;font-size: 16px;">
+                    <a href="https://22.122.51.68/ui/" style="color:rgb(0, 114, 198)">同城DHCP服务器</a>
+                </li>
+                <li class="list-group-item" style="border:none;font-size: 16px;">
+                    <a href="http://22.1.84.80:8080/imc/" style="color:rgb(0, 114, 198)">西单EAD服务器</a>
+                </li>
+                <li class="list-group-item" style="border:none;font-size: 16px;">
+                    <a href="https://22.1.84.68/ui/" style="color:rgb(0, 114, 198)">西单DHCP服务器</a>
+                </li>
+                <li class="list-group-item" style="border:none;font-size: 16px;">
+                    <a href="http://22.1.111.29/cli_realtime/" style="color:rgb(0, 114, 198)">命令行实时采集</a>
+                </li>
+                <li class="list-group-item" style="border:none;font-size: 16px;">
+                    <a href="http://22.1.111.29/CMCS_Tool/excel_push/" style="color:rgb(0, 114, 198)">CMCS批量任务创建</a>
+                </li>
+                <li class="list-group-item" style="border:none;font-size: 16px;">
+                    <a href="https://22.122.32.128:8001/nccmweb/#initial" style="color:rgb(0, 114, 198)">CMCS管理平台</a>
+                </li>
+            </ul>
+        </div>
+        <div class="preloader hidden"><i class="fa fa-spinner fa-spin fa-5x"></i></div>
+{% endverbatim myblock %}
+        {% include 'oa_vlan_assign/_modal_ip_add.html' %}
+    </div>
+
+{% endblock %}
+{% block bodycontent %}
+    <!-- DataTables JavaScript(with Buttons)-->
+    <script src="/static/jquery_datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/oa_vlan_assign/js/jquery.form.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/oa_vlan_assign/layer/layer.js"></script>
+    <script type="text/javascript" src="/static/bower_components/datatables/media/js/dataTables.bootstrap.js"></script>
+    <script src="/static/app/oa_vlan_assign/js/ip.js" ></script>
+{% endblock %}

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="order_pro">
+        <div t-foreach="pro" t-as="item" class="col-md-4 form-inline">
+            <t t-if="item.class.indexOf('date_time') == -1">
+                <div class="form-group">
+                    <label class="control-label"><t t-esc="item.CH"/></label>
+                    <input type="text" t-att-data-title="item.CH" t-att-class="'form-control '+item.class" t-att-name="item.data" t-att-value="val[item.data]" />
+                </div>
+            </t>
+            <t t-if="item.class.indexOf('date_time') != -1">
+                <div class="input-append date form_datetime form-group">
+                    <label class="control-label"><t t-esc="item.CH"/></label>
+                    <input t-att-name="item.data" type="text" t-att-class="'form-control '+item.class" t-att-data-title="item.CH" t-att-placeholder="item.CH" t-att-value="val[item.data]" readonly="true" />
+                    <span class="add-on"><i class="icon-th glyphicon glyphicon-calendar"></i></span>
+                </div>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="zone_list">
+        <t t-if="val.length">
+            <tr t-foreach="val" t-as="item" t-att-data-zid="item.id||'none'">
+                <td class="data_index"><t t-esc="item_index+1" /></td>
+                <td><input name="server" data-title="服务器" type="text" t-att-value="item.server" class="form-control required"/></td>
+                <td>
+                    <t t-if="ord.state == '退回' or ord.state == '草稿'">
+                        <input name="partition" data-title="分区名" type="text" t-att-value="item.partition" class="form-control required"/>
+                    </t>
+                    <t t-if="ord.state != '退回' and ord.state != '草稿'">
+                        <input name="partition_for_zone" data-title="分区名" type="text" t-att-value="item.partition_for_zone" class="form-control"/>
+                    </t>
+                </td>
+                <td>
+                    <textarea name="wwn" data-title="WWN" cols="25" rows="4" class="form-control required"><t t-esc="item.wwn" /></textarea>
+                </td>
+                <td>
+                    <t t-if="ord.state == '退回' or ord.state == '草稿'">
+                        <input name="storage_sn" data-title="存储SN" t-att-value="item.storage_sn" type="text" class="form-control auto_complete required"/>
+                    </t>
+                    <t t-if="ord.state != '退回' and ord.state != '草稿'">
+                        <input name="storage_sn_for_zone" data-title="存储SN" t-att-value="item.storage_sn_for_zone" type="text" class="form-control auto_complete"/>
+                    </t>
+                </td>
+                <td>
+                    <t t-if="ord.state == '退回' or ord.state == '草稿'">
+                        <textarea name="storage_port" placeholder="请输入以下形式：\n1A/3C\n2A/4C"
+                                  data-title="存储端口" cols="25" rows="4"
+                                  class="form-control storage_port"><t t-esc="item.storage_port"/></textarea>
+                    </t>
+                    <t t-if="ord.state != '退回' and ord.state != '草稿'">
+                        <textarea name="storage_port_for_zone" placeholder="手动输入以下形式：\n1A/3C\n2A/4C"
+                                  data-title="存储端口" cols="25" rows="4"
+                                  class="form-control storage_port" t-att-data-val="item.storage_port"><t t-esc="item.storage_port_for_zone"/></textarea>
+                    </t>
+                </td>
+                <td>
+                    <select name="backup_area" data-title="备份域" class="form-control">
+                        <t t-set="sel" t-value="item.backup_area"></t>
+                        <option value="">无</option>
+                        <option t-foreach="area" t-as="a" t-att-value="a" t-att="{'selected':sel===a?'selected':null}"><t t-esc="a" /></option>
+                    </select>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-xs btn-info hidden_able btn_delete">删除</button>
+                    <button type="button" class="btn btn-xs btn-success hidden_able btn_reset">重置</button>
+                </td>
+            </tr>
+        </t>
+        <t t-if="!val.length">
+            <tr data-zid="none">
+                <td class="data_index">1</td>
+                <td><input name="server" data-title="服务器" type="text" class="form-control required"/></td>
+                <td><input name="partition" data-title="分区名" type="text" class="form-control required"/></td>
+                <td>
+                    <textarea name="wwn" data-title="WWN" cols="25" rows="4" class="form-control required"></textarea>
+                </td>
+                <td>
+                    <input name="storage_sn" data-title="存储SN" type="text" class="form-control auto_complete required"/>
+                </td>
+                <td>
+                    <textarea name="storage_port" placeholder="手动只能输入以下形式：\n1A/3C\n2A/4C"
+                              data-title="存储端口" cols="25" rows="4"
+                              class="form-control storage_port"></textarea>
+                </td>
+                <td>
+                    <select name="backup_area" data-title="备份域" class="form-control">
+                        <option value="">无</option>
+                        <option t-foreach="area" t-as="a" t-att-value="a"><t t-esc="a"/></option>
+                    </select>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-xs btn-info hidden_able btn_delete">删除</button>
+                    <button type="button" class="btn btn-xs btn-success hidden_able btn_reset">重置</button>
+                </td>
+            </tr>
+        </t>
+    </t>
+
+    <t t-name="zone_list_btns">
+        <button t-foreach="btn" t-as="item"
+                type="button" t-att-class="'btn btn-sm btn-info '+item.class">
+            <t t-esc="item.html"/>
+        </button>
+    </t>
+
+    <t t-name="view_script">
+        <div class="modal fade view_script">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title">
+                            <b>查看脚本 -</b>
+                            <t t-esc="order.name" />
+                            <t t-esc="order.number" />
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <t t-set="data" t-value="script.context" />
+                        <t t-call="modal_body" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" t-att-data-id="script.id" class="btn btn-sm btn-success download_script">下载脚本</button>
+                        <button t-if="order.state != '关闭'" type="button" t-att-data-id="script.id" class="btn btn-sm btn-info save_script">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="modal_body">
+        <div class="modal_body follow_nav_style">
+            <div class="aside_menu">
+                <h4 class="h4">设备</h4>
+                <ul id="device_list" class="list-unstyled menu_list">
+                    <t t-set="index" t-value="0" />
+                    <li t-foreach="data" t-as="item" t-att="{'class':index == 0 ? 'active' : ''}">
+                        <a t-att-href="'#script_a_'+index">
+                            <span t-esc="item.san_core_switch_info.core_san_switch_name"></span><br/>
+                            <span t-esc="item.san_core_switch_info.core_san_switch_ip"></span>
+                        </a>
+                        <t t-set="index" t-value="++index" />
+                    </li>
+                </ul>
+            </div>
+            <div class="main_content">
+                <t t-set="index" t-value="0" />
+                <div t-att-id="'script_a_'+index" t-foreach="data" t-as="item" t-att="{'class':index == 0 ? 'content_script active' : 'content_script'}">
+                    <textarea class="script_area" t-att-data-key="'script'+index"><t t-esc="item.zone_scrpit" /></textarea>
+                    <t t-set="index" t-value="++index" />
+                </div>
+            </div>
+        </div>
+    </t>
+    <t t-name="zone_help">
+        <div>划zone说明，后期存储组补充即可</div>
+    </t>
+
+    <t t-name="menu_list_num">
+       <h4 class="h4">我的工单</h4>
+        <ul id="my_states" class="list-unstyled menu_list">
+            <li t-foreach="my_states" t-as="item" t-att-class="item_index == 0?'active':''">
+                <a t-att-href="item.state"><t t-esc="item.tab"/></a>
+                <span t-if="item.num" class="menu_num"><t t-esc="item.num"/></span>
+            </li>
+        </ul>
+        <t t-if="type == '需处理的工单'">
+            <h4 style="margin-top: 30px;" class="h4">我处理的</h4>
+            <ul id="deal_states" class="list-unstyled menu_list">
+                <li t-foreach="deal_states" t-as="item">
+                    <a t-att-href="item.state"><t t-esc="item.tab"/></a>
+                    <span t-if="item.num" class="menu_num"><t t-esc="item.num"/></span>
+                </li>
+            </ul>
+        </t>
+    </t>
+
+    <t t-name="record_list">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>操作人</th>
+                    <th>操作</th>
+                    <th>时间</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr t-foreach="data" t-as="item">
+                    <td><t t-esc="item_index+1"></t></td>
+                    <td><t t-esc="item.approver"></t></td>
+                    <td><t t-esc="item.opt_show"></t></td>
+                    <td><t t-esc="item.create_time"></t></td>
+                    <td><t t-esc="item.context"></t></td>
+                </tr>
+            </tbody>
+        </table>
+    </t>
+</templates>

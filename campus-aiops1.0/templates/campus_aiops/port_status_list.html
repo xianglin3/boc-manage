@@ -1,0 +1,209 @@
+{% extends "prettyBase.html" %}
+{% block pagetitle %}综合查询{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block headcontent %}
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/datatables/media/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/port.css"/>
+    <link rel="stylesheet" href="/static/app/campus_aiops/css/index.css"/>
+    <style>
+        pre{
+            height: 300px;
+            font-family: monospace;
+            font-size: 16px;
+            background-color: black;
+            color: white;
+        }
+    </style>
+{% endblock %}
+{% block pagecontent %}
+    {% include "campus_aiops/navBase.html"%}
+    {% verbatim myblock %}
+    <div class="port-list" id="port">
+        <div class="row">
+            <div class="col-lg-12" style="position:relative;">
+                <div>
+                    <div class="mode">
+                        <span style="float:left;padding-right:10px;font-size:16px;">端口类型:</span>
+                        <el-checkbox style="float:left;padding-right:10px" :indeterminate="isIndeterminateMode" v-model="checkAllMode" @change="handleCheckAllChange">全选</el-checkbox>
+                        <div style="margin: 15px 0;"></div>
+                        <el-checkbox-group v-model="checkedMode" @change="handleCheckedModeChange">
+                        <el-checkbox v-for="mode in modes" :label="mode" :key="mode">{{ mode | retrunValue }}</el-checkbox>
+                        </el-checkbox-group>
+                    </div>
+                    <div class='areas'>
+                        <span style="float:left;padding-right:10px;font-size:16px;">地域:</span>
+                        <el-checkbox style="float:left;padding-right:10px" :indeterminate="isIndeterminateArea" v-model="checkAllArea" @change="handleCheckAllChangeArea">全选</el-checkbox>
+                        <div style="margin: 15px 0;"></div>
+                        <el-checkbox-group v-model="checkedArea" @change="handleCheckedAreaChange">
+                            <el-checkbox v-for="area in areas" :label="area" :key="area">{{area}}</el-checkbox>
+                        </el-checkbox-group>
+                    </div>
+                </div>
+                <div style="right: 10px;top: -14px;position: absolute; padding-right:20px;">
+                    <i v-show="advIcon" @click="hideSearch" :class="advSearch ? 'glyphicon glyphicon-minus':'glyphicon glyphicon-plus' " style="color:#20a0ff;margin-right:-10px;padding:2px;font-size:12px;border:1px solid #ccc;cursor:pointer;"></i>
+                    <el-button v-show="!advTab" type="text" @click="searchTab">高级查询</el-button>
+                    <el-button v-show="advTab" type="text" @click="resetSearch">普通查询</el-button>
+                </div>
+            </div>
+            <!-- 高级查询区域 -->
+            <div class="col-lg-12" v-show="advSearch" style="padding-top:10px;position:relative;">
+                <div class="status">
+                    <span style="float:left;padding-right:10px;font-size:16px;">端口状态:</span>
+                    <el-checkbox style="float:left;padding-right:10px" :indeterminate="isIndeterminateStatus" v-model="checkAllStatus" @change="handleCheckAllChangeStatus">全选</el-checkbox>
+                    <div style="margin: 15px 0;"></div>
+                    <el-checkbox-group v-model="checkedStatus" @change="handleCheckedStatusChange">
+                    <el-checkbox v-for="status in statuss" :label="status" :key="status">{{ status | retrunValue }}</el-checkbox>
+                    </el-checkbox-group>
+                </div>
+                <div class="status">
+                    <span style="float:left;padding-right:10px;font-size:16px;">认证方式:</span>
+                    <el-checkbox style="float:left;padding-right:10px" :indeterminate="isIndeterminateType" v-model="checkAllType" @change="handleCheckAllChangeType">全选</el-checkbox>
+                    <div style="margin: 15px 0;"></div>
+                    <el-checkbox-group v-model="checkedType" @change="handleCheckedTypeChange">
+                    <el-checkbox v-for="type in types" :label="type" :key="type">{{ type | retrunType }}</el-checkbox>
+                    </el-checkbox-group>
+                </div>
+                <div style="width:450px;float:left;padding-top:20px;">
+                    <span style="float:left;display:inline-block;padding-right:10px;font-size:16px;">ARP/MAC地址批量查询:</span>
+                    <el-popover
+                        style="display:inline-block;width:263px;"
+                        placement="top"
+                        title="提示"
+                        width="256"
+                        trigger="focus"
+                        content="mac地址只支持三种格式的输入：6c0b.8445.0941，6c:0b:84:45:09:41和6c-0b-84-45-09-41">
+                        <el-input
+                            slot="reference"
+                            type="textarea"
+                            :autosize="{ minRows: 2}"
+                            placeholder="输入ARP或者MAC地址一种,回车键换行"
+                            v-model="textareaSearch">
+                        </el-input>
+                    </el-popover>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-lg-12">
+                <button type="button" class="btn btn-info btn-xs" @click="dowanloadExcel()">批量下载</button>
+                <button type="button" style="margin-left:20px;background-color: #337ab7;color:#fff" class="btn" @click="searchIp()">查询</button>
+                <div class="dropdown show-filed" style="margin-top:6px">
+                    <button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">显示字段<span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li data-stopPropagation="true" v-for = "(value,key) in showField">
+                            <label style="width:100%;"><input style="margin-right:6px;" type="checkbox" :value="value">{{key}}</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- port_list table -->
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="dataTable" class="table table-striped table-bordered table-hover" align="center" style="width:100%;">
+                    <thead>
+                        <tr style="background: #337ab7; color:#fff;">
+                            <td><input type="checkbox" class="checkall"></td>
+                            <th>交换机IP</th>
+                            <th>交换机名</th>
+                            <th>端口名</th>
+                            <th>端口类型</th>
+                            <th>端口状态</th>
+                            <th>MAC</th>
+                            <th>ARP</th>
+                            <th>认证模式</th>
+                            <th>地域</th>
+                            <th>show run配置</th>
+                            <th>历史mac</th>
+                            <th>历史arp</th>
+                            <th>日志端口状态</th>
+                            <th>日志时间</th>
+                            <th>更新时间(采集)</th>
+                            <th>员工号-EAD</th>
+                            <th>员工姓名-EAD</th>
+                            <th>操作系统-EAD</th>
+                            <th>终端品牌-EAD</th>
+                            <th>终端类型-EAD</th>
+                            <th>所属部门-EAD</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div class="preloader" v-show="loading"><i class="fa fa-spinner fa-spin fa-5x"></i></div>
+        <!-- 详情页对话框 -->
+        <el-dialog class="ipSee" title="详细信息" :visible.sync="ipSeeVisible">
+            <div class="modal-body">
+                <div class="btnTab">
+                    <span :class="infoSwitch ? 'active':'' " @click="infoSwitch = true">人工录入信息<i style="top:28px;left:46px;"></i></span>
+                    <span :class="infoSwitch ? '':'active' " @click="infoSwitch = false">自动采集信息<i style="top:28px;left:165px;"></i></span>
+                </div>
+                <ul v-show="infoSwitch" class="list-group row" style="margin-bottom: 20px;background-color: #fff; ">
+                  <li v-if="ele['sort'] == 'man'" class=" col-sm-6 col-md-4 col-lg-3" v-for = '(ele,index) in seeField' style="border-radius:none;">
+                      <span :title='ele.text' style="width:40%">{{ ele.text }}</span>
+                      <span :title='returnData(seeData,ele.field)' style="width:60%">：{{returnData(seeData,ele.field) || '空'}}</span>
+                  </li>
+                </ul>
+                <ul v-show="!infoSwitch" class="list-group row" style="background-color:#fff ">
+                  <li v-if="ele['sort'] == 'auto'" class="col-sm-6 col-md-4 col-lg-3" v-for = '(ele,index) in seeField' style="border-radius:none;">
+                      <span :title='ele.text' style="width:40%;">{{ ele.text }}</span>
+                      <span :title='seeData[ele.field]' style="width:60%;">：{{seeData[ele.field] || "空"}}</span>
+                  </li>
+                </ul>
+            </div>
+        </el-dialog>
+        <!-- 下发配置对话框 -->
+        <div class="modal fade" id="interfaceConfigModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="pushPortFullName" value="hi">端口配置下发</h4>
+                    </div>
+                    <div class="modal-body">
+                        <b>show run配置：</b>
+                        <div id="showRun"></div>
+                        <div id="portmac"></div>
+                        <div class="form-group">
+                            <label>选择配置类型</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="typeoption" id="inode"
+                                       value="inode">iNode认证端口配置
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="typeoption" id="mac"
+                                       value="mac">MAC认证端口配置
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="typeoption" id="other"
+                                       value="other">普通终端接入配置
+                            </label>
+                        </div>
+                        <b>待下发配置：</b>
+                        <div id="config"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" id="pushBut" class="btn btn-primary">下发配置</button>
+                    </div>
+                    <div style="display:none"><input id="push_ip" value="21.3.32.201"/>
+                    </div>
+                    <div id='show_loader' class="preloader hidden"><i class="fa fa-spinner fa-spin fa-5x"></i></div>
+                    <!-- /.modal-content -->
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endverbatim myblock %}
+{% endblock %}
+{% block bodycontent %}
+    <script src="/static/jquery_datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/static/bower_components/datatables/media/js/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/navBase.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/app/campus_aiops/js/port.js"></script>
+{% endblock %}

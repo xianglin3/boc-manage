@@ -1,0 +1,164 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left:50%;
+  margin-left: -80px;
+  width:160px;
+  height:160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  text-align: center;
+  z-index: 1060;
+}
+//在线选课
+div.fluid-container{
+  div.link_list{
+    a{
+      padding: 2px 20px;
+      margin-right: 10px;
+    }
+    a.active{
+      background-color: #00a65a;
+      border-color: #008d4c;
+    }
+  }
+  div.main_page{
+    div.page{
+      display: none;
+      div.user_info{
+        margin-bottom: 8px;
+        >div{
+          margin-top: 8px;
+        }
+      }
+      table.table{
+        thead{
+          background-color:#3c8dbc;
+          color: #fff;
+        }
+        tbody{
+          tr.selected{
+            td[data-field=opt]{
+              button.btn{
+                background-color: #E4393C;
+                color: #fff;
+              }
+            }
+          }
+        }
+        tr{
+          td,th{
+            padding: 4px;
+            input.mod_input{
+              width: 100px;
+            }
+            select.mod_input{
+              width: 100px;
+              height: 26px;
+            }
+          }
+          td[data-field=opt]{
+            text-align: center;
+            button.btn{
+              padding: 0px 6px;
+              background-color: #7AAE71;
+              color: #fff;
+              margin: 0px 4px;
+            }
+            button.btn[data-act=del]{
+              background-color: #d15b47;
+            }
+            button.btn[data-act=mod]{
+              background-color: #6fb3e0;
+            }
+            button.btn[data-act=save]{
+              background-color: #87b87f;
+            }
+            button.btn[data-act=drop]{
+              background-color: #f39c12;
+            }
+          }
+        }
+      }
+      a.buttons-excel{
+        padding: 2px 12px;
+      }
+      #table_select{
+        tbody{
+          tr{
+            background-color: #fefefe;
+          }
+          tr.required{
+            background-color: #FFFAE3;
+          }
+        }
+      }
+    }
+    div.page.active{
+      display: block;
+    }
+  }
+}
+//选课记录
+.item_human_course{
+  display: inline-block;
+  padding: 1px 6px;
+  border: 1px solid #fa9f1f;
+  margin: 2px 8px;
+  background-color: #f39c12;
+  border-radius: 4px;
+  color: #fff;
+}
+div.record_page{
+  margin-top:10px;
+  table.table{
+    thead>tr{
+      background-color:#3c8dbc;
+      color: #fff;
+    }
+    thead>tr>th:first-child{
+      min-width: 104px;
+      vertical-align: middle;
+      text-align: center;
+    }
+    tbody{
+      tr{
+        td:first-child{
+          width: 104px;
+          vertical-align: middle;
+          text-align: center;
+        }
+        td{
+          span.human_item{
+            .item_human_course
+          }
+        }
+      }
+    }
+  }
+}
+
+//课表管理
+div.course_opt{
+  margin-top: 10px;
+  button.btn{
+    padding: 2px 20px;
+  }
+}
+div.table-responsive{
+  margin-top: 4px;
+  div.dataTables_length{
+    select{
+      border-radius: 2px;
+      outline: none;
+    }
+  }
+  div.dataTables_filter{
+    input{
+      border-radius: 4px;
+      outline: none;
+    }
+  }
+}

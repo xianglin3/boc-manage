@@ -1,0 +1,43 @@
+{
+  "pieData":[
+
+    {
+      "data": [
+      {"value": 1,"name": "骨干网"},
+      {"value": 9,"name": "外网"},
+      {"value": 2,"name": "存储网"},
+      {"value": 4,"name": "局域网生产组"},
+      {"value": 1,"name": "局域网非生产组"},
+      {"value": 6,"name": "其他"}
+      ],
+      "CH": "运维组",
+      "name": "bus_type"
+    },
+    {
+      "data": [
+        {"value": 2,"name": "aaaa"},
+        {"value": 5,"name": "bbbb"},
+        {"value": 2,"name": "cccc"},
+        {"value": 6,"name": "dddd"},
+        {"value": 8,"name": "eeee"},
+        {"value": 2,"name": "ffff"}
+      ],
+      "CH": "事件状态",
+      "name": "state"
+    }
+  ],
+  "tableData":[
+    {"number":"N1","state":"N1","bus_type":"骨干网","user":"N1","node":"N1","dev_name":"N1","summary":"N1","lastoccurrence":"N1","firstoccurrence":"N1","tally":"N1","note":"N1"},
+    {"number":"N2","state":"N2","bus_type":"外网","user":"N2","node":"N2","dev_name":"N2","summary":"N2","lastoccurrence":"N2","firstoccurrence":"N2","tally":"N2","note":"N2"},
+    {"number":"N3","state":"N3","bus_type":"存储网","user":"N3","node":"N3","dev_name":"N3","summary":"N3","lastoccurrence":"N3","firstoccurrence":"N3","tally":"N3","note":"N3"},
+    {"number":"N4","state":"N4","bus_type":"局域网生产组","user":"N4","node":"N4","dev_name":"N4","summary":"N4","lastoccurrence":"N4","firstoccurrence":"N4","tally":"N4","note":"N4"},
+    {"number":"N5","state":"N5","bus_type":"局域网非生产组","user":"N5","node":"N5","dev_name":"N5","summary":"N5","lastoccurrence":"N5","firstoccurrence":"N5","tally":"N5","note":"N5"},
+    {"number":"N6","state":"N6","bus_type":"其他","user":"N6","node":"N6","dev_name":"N6","summary":"N6","lastoccurrence":"N6","firstoccurrence":"N6","tally":"N6","note":"N6"},
+    {"number":"N7","state":"N7","bus_type":"局域网非生产组","user":"N7","node":"N7","dev_name":"N7","summary":"N7","lastoccurrence":"N7","firstoccurrence":"N7","tally":"N7","note":"N7"},
+    {"number":"N8","state":"N8","bus_type":"存储网","user":"N8","node":"N8","dev_name":"N8","summary":"N8","lastoccurrence":"N8","firstoccurrence":"N8","tally":"N8","note":"N8"},
+    {"number":"N9","state":"N9","bus_type":"局域网生产组","user":"N9","node":"N9","dev_name":"N9","summary":"N9","lastoccurrence":"N9","firstoccurrence":"N9","tally":"N9","note":"N9"},
+    {"number":"N10","state":"N10","bus_type":"骨干网","user":"N10","node":"N10","dev_name":"N10","summary":"N10","lastoccurrence":"N10","firstoccurrence":"N10","tally":"N10","note":"N10"},
+    {"number":"N11","state":"N11","bus_type":"存储网","user":"N11","node":"N11","dev_name":"N11","summary":"N11","lastoccurrence":"N11","firstoccurrence":"N11","tally":"N11","note":"N11"},
+    {"number":"N12","state":"N12","bus_type":"外网","user":"N12","node":"N12","dev_name":"N12","summary":"N12","lastoccurrence":"N12","firstoccurrence":"N12","tally":"N12","note":"N12"}
+  ]
+}

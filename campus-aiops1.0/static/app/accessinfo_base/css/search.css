@@ -1,0 +1,52 @@
+.preloader {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+  line-height: 200px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 10;
+}
+div.form-inline {
+  margin-bottom: 10px;
+}
+div.form-inline div.form-group label {
+  width: 82px;
+  text-align: right;
+}
+div.form-inline div.form-group .form-control {
+  border-radius: 4px;
+}
+#search {
+  padding: 6px 30px;
+}
+#reset_btn {
+  padding: 6px 30px;
+}
+#port_search thead {
+  background-color: #3c8dbc;
+  color: #fff;
+}
+div.dt-buttons a.dt-button {
+  padding: 2px 16px;
+}
+td[data-field=detail] {
+  text-align: center;
+}
+td[data-field=detail] button.see_detail {
+  padding: 2px 12px;
+}
+#show_filed {
+  float: left;
+  margin: -4px 0px 0px 24px;
+}
+.table_container {
+  overflow-x: auto;
+  min-height: 340px;
+  padding-top: 8px;
+}

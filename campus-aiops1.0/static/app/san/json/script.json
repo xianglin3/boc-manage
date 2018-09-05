@@ -1,0 +1,53 @@
+{
+  "context": [
+    {
+      "zone_scrpit": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+      "san_core_switch_info": {
+        "loop_name": "san_core_switch_info.loop_name",
+        "zoneset_name": "san_core_switch_info.zoneset_name",
+        "zone_type": "san_core_switch_info.zone_type",
+        "info": "san_core_switch_info.info",
+        "core_san_switch_ip": "100.92.121.75",
+        "core_san_switch_name": "dev_name1",
+        "core_san_switch_factory": "san_core_switch_info.core_switch.factory"
+      }
+    },
+    {
+      "zone_scrpit": "adipisci atque blanditiis consectetur culpa cum eius ex expedita hic libero, non",
+      "san_core_switch_info": {
+        "loop_name": "san_core_switch_info.loop_name",
+        "zoneset_name": "san_core_switch_info.zoneset_name",
+        "zone_type": "san_core_switch_info.zone_type",
+        "info": "san_core_switch_info.info",
+        "core_san_switch_ip": "100.92.121.76",
+        "core_san_switch_name": "dev_name2",
+        "core_san_switch_factory": "san_core_switch_info.core_switch.factory"
+      }
+    },
+    {
+      "zone_scrpit": "ducimus ea esse, ipsam minima modi nam necessitatibus odio optio quia repudiandae ullam.",
+      "san_core_switch_info": {
+        "loop_name": "san_core_switch_info.loop_name",
+        "zoneset_name": "san_core_switch_info.zoneset_name",
+        "zone_type": "san_core_switch_info.zone_type",
+        "info": "san_core_switch_info.info",
+        "core_san_switch_ip": "100.92.121.77",
+        "core_san_switch_name": "dev_name3",
+        "core_san_switch_factory": "san_core_switch_info.core_switch.factory"
+      }
+    },
+    {
+      "zone_scrpit": "Accusamus aspernatur dolores id minus, quia repudiandae ullam.",
+      "san_core_switch_info": {
+        "loop_name": "san_core_switch_info.loop_name",
+        "zoneset_name": "san_core_switch_info.zoneset_name",
+        "zone_type": "san_core_switch_info.zone_type",
+        "info": "san_core_switch_info.info",
+        "core_san_switch_ip": "100.92.121.78",
+        "core_san_switch_name": "dev_name4",
+        "core_san_switch_factory": "san_core_switch_info.core_switch.factory"
+      }
+    }
+  ],
+  "id":1
+}
